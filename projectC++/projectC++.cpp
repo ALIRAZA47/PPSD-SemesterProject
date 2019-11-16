@@ -8,7 +8,12 @@ const int NumberOfTotalAccounts = 5;
 class uzair
 {
 private:
+	int a;
 public:
+	int getdata()
+	{
+		return a + a;
+	}
 
 
 };
