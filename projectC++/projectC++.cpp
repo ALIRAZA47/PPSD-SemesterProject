@@ -14,21 +14,13 @@ private:
 public:
 	bool search()
 	{
-<<<<<<< HEAD
 
-<<<<<<< HEAD
 	}
-=======
 public:
 	void add()
 	{
 
 	}
-
->>>>>>> 7ecd6db23943e487df8c67c3869358fddbee9c6f
-=======
-	}
->>>>>>> MyBranchUzair
 };
 
 int main()
