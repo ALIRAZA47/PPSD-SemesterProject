@@ -16,11 +16,6 @@ public:
 	{
 
 	}
-public:
-	void add()
-	{
-
-	}
 };
 
 int main()
