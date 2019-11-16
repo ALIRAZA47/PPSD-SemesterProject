@@ -8,23 +8,13 @@ int newVar;
 
 const int NumberOfTotalAccounts = 5;
 
-class uzair
+class PPSD_PROJECT
 {
 private:
 public:
 	bool search()
 	{
-
-<<<<<<< HEAD
-public:
-	void add()
-	{
-
 	}
-
-=======
-	}
->>>>>>> 5815157d6952850e95c8a11976ae7a771ad8b863
 };
 
 int main()
