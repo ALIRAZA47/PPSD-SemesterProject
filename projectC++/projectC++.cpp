@@ -5,9 +5,12 @@
 using namespace std;
 const int NumberOfTotalAccounts = 5;
 int check;
+int uzair;
+int uzair2;
 class uzair
 {
 private:
+<<<<<<< HEAD
 	int a;
 public:
 	int getdata()
@@ -16,6 +19,14 @@ public:
 	}
 
 
+=======
+	int no;
+public:
+	int getNo()
+	{
+		return no;
+	}
+>>>>>>> new
 };
 
 int main()
