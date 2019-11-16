@@ -36,17 +36,142 @@ using namespace std;
 
 const int NumberOfTotalAccounts = 5;
 
-//con
+//end of constants section
 
-class PPSD_PROJECT
+
+//------start of classes or user defined types-------CLASSES
+
+//start of ACCOUNT class declaration----
+class Account
 {
-private:
 public:
+//-----CONSTRUCTORS and DESTRUCTORS section------ DECLARATION
+	Account();
+	~Account();
+//----- FUNCTIONS declaration section
+
+
+//private or data definition section
+private:
+
 };
 
+/*
+-----------
+ACCOUNT class DEFINITION ended
+-----------
+*/
+//start of ACCOUNT class implementation
+
+//CONSTRUCTORS and DESTRUCTORS section------ IMPLEMENTATION
+Account::Account() {}
+
+Account::~Account() {}
+
+
+//.........
+
+//FUNCTIONS of ACCOUNT class section------ IMPLEMENTATION
+
+
+
+//end of ACCOUNT class implementation
+
+//------------------------------
+
+//BankManagmentSystem class 
+class BankManagementSystem
+{
+public:
+// constructors/destructors section of BankManagementSystem class
+	BankManagementSystem();
+	~BankManagementSystem();
+//function section of BankManagementSystem class
+
+//data section of BankManagementSystem class
+private:
+
+};
+
+
+//end of BankManagementSystem class-------definition
+
+//constructors/destructors section of BankManagementSystem class------------implementation
+BankManagementSystem::BankManagementSystem() {}
+
+BankManagementSystem::~BankManagementSystem() {}
+
+
+//functions section of BankManagementSystem class -------------------implementation
+
+
+
+
+
+
+
+//start of main function
 int main()
 {
-	
+	//start of variables section--mian()
+	char  choiceToExitLoop;
+	int choiceOfMenu, choiceForInternalSwitch;
+
+	//menu to display
+
+
+
+	cout << "=======================" << endl;
+	cout << "Bank Management System" <<endl ;
+	cout << "=======================" << endl;
+
+	do
+	{
+//showing menu
+		printf("\n ::Main Menu::\n");
+		printf("\n1. Make New Account ");
+		printf("\n2. Transfer Amount to Another Account ");
+		printf("\n3. Deposit Amount in Account ");
+		printf("\n4. Withdarw Amount from Account ");
+		printf("\n5. Account Options ");
+		printf("\n6. Close Account ");
+		printf("\n7. Display Account Holders List ");
+		printf("\n \n Select one Option of Your Choice");
+		cin >> choiceOfMenu;
+//switch statement to choose menu
+		switch (choiceOfMenu)
+		{
+		case 1:
+			cout << "Making New Account" << endl;
+		break;
+		case 2:
+			cout << "Amount Transfer Section" << endl;
+		break;
+		case 3:
+			cout << "Amount Deposit Section" << endl;
+		break;
+		case 4:
+			cout << "Withdraw Section" << endl;
+		break;
+		case 5:
+			cout << "Accounts Option Section" << endl;
+		break;
+		case 6:
+			cout << "Close Account Section" << endl;
+		break;
+		case 7:
+			cout << "Display Account Holders List Section" << endl;
+		break;
+		default:
+		break;
+		}
+		printf("Do You Want to Continue--- (y/n)--  ");
+		cin >> choiceToExitLoop;
+		printf("\n____________________________________\n");
+
+	} while (choiceToExitLoop == 'y' );
+
+
 	return 0;
 }
 

@@ -1,0 +1,5 @@
+﻿1>------ Build started: Project: projectC++, Configuration: Debug Win32 ------
+1>projectC++.cpp
+1>LINK : fatal error LNK1168: cannot open D:\ProjectPPSD\projectC++\Debug\projectC++.exe for writing
+1>Done building project "projectC++.vcxproj" -- FAILED.
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
