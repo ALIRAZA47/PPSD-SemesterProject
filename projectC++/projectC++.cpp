@@ -12,6 +12,12 @@ class uzair
 {
 private:
 
+public:
+	void add()
+	{
+
+	}
+
 };
 
 int main()
