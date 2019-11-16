@@ -3,10 +3,22 @@
 
 #include <iostream>
 using namespace std;
+
+int newVar;
+
 const int NumberOfTotalAccounts = 5;
+int check;
+
 int uzair;
+<<<<<<< HEAD
+int uzair2;
+=======
 int ali2;
+<<<<<<< HEAD
 int ali3;
+=======
+>>>>>>> a6f27951201a7fd95164368f78cb9f399264dbdf
+>>>>>>> 847e8c2ac9ad71effb9272d50ed6894073d6ce81
 class uzair
 {
 private:
