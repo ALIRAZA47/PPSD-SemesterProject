@@ -42,10 +42,6 @@ class PPSD_PROJECT
 {
 private:
 public:
-	bool search()
-	{
-
-	}
 };
 
 int main()
