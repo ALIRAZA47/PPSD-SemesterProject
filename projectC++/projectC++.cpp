@@ -6,7 +6,11 @@ using namespace std;
 const int NumberOfTotalAccounts = 5;
 int check;
 int uzair;
+<<<<<<< HEAD
 int uzair2;
+=======
+int ali2;
+>>>>>>> a6f27951201a7fd95164368f78cb9f399264dbdf
 class uzair
 {
 private:
