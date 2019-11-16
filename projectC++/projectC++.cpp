@@ -4,6 +4,11 @@
 #include <iostream>
 using namespace std;
 
+class uzair
+{
+
+};
+
 int main()
 {
 	std::cout << "Hello World!\n";
