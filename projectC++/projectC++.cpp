@@ -15,7 +15,16 @@ public:
 	bool search()
 	{
 
+<<<<<<< HEAD
 	}
+=======
+public:
+	void add()
+	{
+
+	}
+
+>>>>>>> 7ecd6db23943e487df8c67c3869358fddbee9c6f
 };
 
 int main()
