@@ -3,7 +3,8 @@
 
 #include <iostream>
 using namespace std;
-
+const int NumberOfTotalAccounts = 5;
+const int ali = 0;
 class uzair
 {
 
