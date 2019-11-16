@@ -1,12 +1,42 @@
 // projectC++.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+//This os project CPP file of Professional Practices in Softwere Development
+//by
+// Syed Uzair, Zeemal Urooj, Qazi Arsalan Shah and Ali Raza Khan
+/*
+*******************************
+
+This project is related to "Bank Management System"
+Main idea behind is ease in banking system
+
+*******************************
+*/
+
+
+//Start of library files section
 
 #include <iostream>
+#include <string>
+#include <cstdlib>
+#include <fstream>
+#include <cmath>
+#include <stdio.h>
+#include <conio.h>
+
+//End of library files section
+
+
+//start of namespace section
+
 using namespace std;
 
-int newVar;
+//end of namespace section
+
+
+//start constants section
 
 const int NumberOfTotalAccounts = 5;
+
+//con
 
 class PPSD_PROJECT
 {
