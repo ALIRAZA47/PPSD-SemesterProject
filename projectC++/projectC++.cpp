@@ -4,6 +4,7 @@
 #include <iostream>
 using namespace std;
 const int NumberOfTotalAccounts = 5;
+int check;
 class uzair
 {
 private:
