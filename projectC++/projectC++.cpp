@@ -95,11 +95,7 @@ public:
 	~BankManagementSystem();
 //function section of BankManagementSystem class
 	// start of searchfunction
-	void search()
-	{
-		cout <<
 
-	}
 //data section of BankManagementSystem class
 private:
 
