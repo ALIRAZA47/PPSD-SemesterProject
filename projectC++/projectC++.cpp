@@ -45,6 +45,13 @@ const int NumberOfTotalAccounts = 5;
 class Account
 {
 public:
+    //------- DECLARATION OF THE ATTRIBUTES WHICH WE REQURIED FOR AN ACCOUNT
+    int AccountNumber;
+    int CashInAccount;
+    long MobileNumber;
+    string NameOfAccountHolder;
+    string CityOfAccountHolder;
+    string EmailOfAccoutHolder;
 //-----CONSTRUCTORS and DESTRUCTORS section------ DECLARATION
 	Account();
 	~Account();
@@ -79,7 +86,7 @@ Account::~Account() {}
 
 //------------------------------
 
-//BankManagmentSystem class 
+//BankManagmentSystem class
 class BankManagementSystem
 {
 public:
@@ -87,7 +94,12 @@ public:
 	BankManagementSystem();
 	~BankManagementSystem();
 //function section of BankManagementSystem class
+	// start of searchfunction
+	void search()
+	{
+		cout <<
 
+	}
 //data section of BankManagementSystem class
 private:
 
