@@ -49,12 +49,13 @@ public:
     int AccountNumber;
     int CashInAccount;
     long MobileNumber;
+    string CnicNumber;
     string NameOfAccountHolder;
     string CityOfAccountHolder;
     string EmailOfAccoutHolder;
 //-----CONSTRUCTORS and DESTRUCTORS section------ DECLARATION
-	Account();
-	~Account();
+    Account();
+    ~Account();
 //----- FUNCTIONS declaration section
 
 
@@ -92,17 +93,18 @@ class Node
 {
     // -------private section of class Node
 private:
-     // attributes of private section
-    Account objectOfAccountClass;
+    // attributes of private section
     Node *next;
-
     // ----------Public section of class Node
 public:
+    // Object of account class
+    Account objectOfAccountClass;
+
     // constructor and destructor of class Node;
     Node();
     ~Node();
 
-    // GETTER AND SETTER OF Node CLASS OF NEXT Node
+    // GETTER AND SETTER OF Node CLASS to get and set NEXT Node
     void setnext(Node* b)
     {
         next = b;
@@ -115,7 +117,8 @@ public:
 
 
 //constructors/destructor section of Node class------------implementation
-Node::Node(){
+Node::Node()
+{
     next=NULL;
 }
 Node::~Node() {}
@@ -132,18 +135,22 @@ private:
     Node*start;
 public:
 // constructors/destructors section of LinkedList class
-	linkedlist();
+    linkedlist();
     ~linkedlist();
 //function section of LinkedList class
-
-
+    void search1();
+    void displayAllAccounts();
+    void display1(Node*node);
 };
 
 
 //end of LinkedList class-------definition
 
 //constructors/destructors section of LinkedList class------------implementation
-linkedlist::linkedlist() {}
+linkedlist::linkedlist()
+{
+    start = NULL;
+}
 
 linkedlist::~linkedlist() {}
 
@@ -151,74 +158,176 @@ linkedlist::~linkedlist() {}
 //functions section of LinkedList class -------------------implementation
 
 
+// START OF SEARCH FUNTION---------------------implementation
+void linkedlist::search1()
+{
+    int choice;
+//asking Choice
+    cout << "BY WHICH METHOD YOU WANT TO SEARCH" << endl;
+    cout << "PRESS 1 IF YOU WANT TO SEACRH BY NAME" << endl;
+    cout << "PRESS 2 IF YOU WANT TO SEACRH BY ACCOUNT NUMBER" << endl;
+    cout << "PRESS 3 IF YOU WANT TO SEACRH BY MOBILE NUMBER" << endl;
+    cout << "PRESS 4 IF YOU WANT TO SEACRH BY CNIC NUMBER" << endl ;
+    cin >> choice ;
+
+// start of switch statement
+    switch (choice)
+    {
+    case 1:
+        {
+        string NAME;
+        cout << "ENTER THE NAME OF THE ACCOUNT HOLDER" << endl;
+        cin >> NAME;
+        Node*temp=start;                    // temp is the pointer which we use to find the required node
+        while(temp->objectOfAccountClass.NameOfAccountHolder != NAME && temp != NULL)
+        {
+            temp=temp->getnext();
+        }
+        display1(temp);
+        break;
+        }
+    case 2:
+        {
+        int number;
+        cout << "ENTER THE ACCOUNT NUMBER OF THE ACCOUNT HOLDER" << endl;
+        cin >> number;
+        Node*temp1=start;
+          while(temp1->objectOfAccountClass.AccountNumber != number && temp1 != NULL)
+        {
+            temp1=temp1->getnext();
+        }
+        display1(temp1);
+        break;
+        }
+    case 3:
+        {
+         long mobilenumber;
+        cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
+        cin >> mobilenumber;
+        Node*temp2=start;
+          while(temp2->objectOfAccountClass.MobileNumber != mobilenumber && temp2 != NULL)
+        {
+            temp2=temp2->getnext();
+        }
+        display1(temp2);
+        break;
+        }
+    case 4:
+        {
+        string cnic;
+        cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
+        cin >> cnic;
+        Node*temp3=start;
+          while(temp3->objectOfAccountClass.CnicNumber != cnic && temp3 != NULL)
+        {
+            temp3=temp3->getnext();
+        }
+        display1(temp3);
+        break;
+        }
+    default:
+        cout << "INVALID CHOICE" << endl;
+
+    }
+// end of switch statement
 
 
+} // END OF SEARCH FUNCTION ------------------ implementation
+
+
+// INNER display function to which we will pass node
+void linkedlist::display1(Node*node)
+    {
+        cout << "-------------------------------------" << endl;
+        cout << "FOLLOWING ARE THe DETAILS OF THE ACCOUNTS " << endl;
+        cout << node->objectOfAccountClass.NameOfAccountHolder << endl;
+        cout << node->objectOfAccountClass.AccountNumber << endl;
+        cout << node->objectOfAccountClass.CashInAccount << endl;
+        cout << node->objectOfAccountClass.MobileNumber << endl;
+        cout << node->objectOfAccountClass.CnicNumber << endl;
+        cout << node->objectOfAccountClass.CityOfAccountHolder << endl;
+        cout << node->objectOfAccountClass.EmailOfAccoutHolder << endl;
+        cout << "--------------------------------------" << endl;
+    } // END OF INNER DISPLAY FUNCTION-------------------------- implementation
+
+
+//START OF DISPLAY_ALL_ACCOUNTS FUNCTION ----------------- implementation
+void linkedlist::displayAllAccounts()
+{
+    Node*temp=start;
+    while(temp!=NULL)
+    {
+        display1(temp);
+        temp=temp->getnext();
+    }
+} // END OF DISPLAY_ALL_ACCOUNTS FUNCTION ------------------ implementation
 
 
 
 //start of main function
 int main()
 {
-	//start of variables section--mian()
-	char  choiceToExitLoop;
-	int choiceOfMenu, choiceForInternalSwitch;
+    //start of variables section--mian()
+    char  choiceToExitLoop;
+    int choiceOfMenu, choiceForInternalSwitch;
 
-	//menu to display
+    //menu to display
 
 
 
-	cout << "=======================" << endl;
-	cout << "Bank Management System" <<endl ;
-	cout << "=======================" << endl;
+    cout << "=======================" << endl;
+    cout << "Bank Management System" <<endl ;
+    cout << "=======================" << endl;
 
-	do
-	{
+    do
+    {
 //showing menu
-		printf("\n ::Main Menu::\n");
-		printf("\n1. Make New Account ");
-		printf("\n2. Transfer Amount to Another Account ");
-		printf("\n3. Deposit Amount in Account ");
-		printf("\n4. Withdarw Amount from Account ");
-		printf("\n5. Account Options ");
-		printf("\n6. Close Account ");
-		printf("\n7. Display Account Holders List ");
-		printf("\n \n Select one Option of Your Choice");
-		cin >> choiceOfMenu;
+        printf("\n ::Main Menu::\n");
+        printf("\n1. Make New Account ");
+        printf("\n2. Transfer Amount to Another Account ");
+        printf("\n3. Deposit Amount in Account ");
+        printf("\n4. Withdarw Amount from Account ");
+        printf("\n5. Search an Account ");
+        printf("\n6. Close Account ");
+        printf("\n7. Display Account Holders List ");
+        printf("\n \n Select one Option of Your Choice");
+        cin >> choiceOfMenu;
 //switch statement to choose menu
-		switch (choiceOfMenu)
-		{
-		case 1:
-			cout << "Making New Account" << endl;
-		break;
-		case 2:
-			cout << "Amount Transfer Section" << endl;
-		break;
-		case 3:
-			cout << "Amount Deposit Section" << endl;
-		break;
-		case 4:
-			cout << "Withdraw Section" << endl;
-		break;
-		case 5:
-			cout << "Accounts Option Section" << endl;
-		break;
-		case 6:
-			cout << "Close Account Section" << endl;
-		break;
-		case 7:
-			cout << "Display Account Holders List Section" << endl;
-		break;
-		default:
-		break;
-		}
-		printf("Do You Want to Continue--- (y/n)--  ");
-		cin >> choiceToExitLoop;
-		printf("\n____________________________________\n");
+        switch (choiceOfMenu)
+        {
+        case 1:
+            cout << "Making New Account" << endl;
+            break;
+        case 2:
+            cout << "Amount Transfer Section" << endl;
+            break;
+        case 3:
+            cout << "Amount Deposit Section" << endl;
+            break;
+        case 4:
+            cout << "Withdraw Section" << endl;
+            break;
+        case 5:
+            cout << "Search an Account" << endl;
+            break;
+        case 6:
+            cout << "Close Account Section" << endl;
+            break;
+        case 7:
+            cout << "Display Account Holders List Section" << endl;
+            break;
+        default:
+            break;
+        }
+        printf("Do You Want to Continue--- (y/n)--  ");
+        cin >> choiceToExitLoop;
+        printf("\n____________________________________\n");
 
-	} while (choiceToExitLoop == 'y' );
+    }
+    while (choiceToExitLoop == 'y' );
 
 
-	return 0;
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
