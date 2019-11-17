@@ -87,39 +87,68 @@ Account::~Account() {}
 //------------------------------
 
 
-// NODE CLASS
+// Node CLASS
 class Node
 {
+    // -------private section of class Node
+private:
+     // attributes of private section
+    Account objectOfAccountClass;
+    Node *next;
 
+    // ----------Public section of class Node
+public:
+    // constructor and destructor of class Node;
+    Node();
+    ~Node();
+
+    // GETTER AND SETTER OF Node CLASS OF NEXT Node
+    void setnext(Node* b)
+    {
+        next = b;
+    }
+    Node* getnext()
+    {
+        return next;
+    }
 } ;
+
+
+//constructors/destructor section of Node class------------implementation
+Node::Node(){
+    next=NULL;
+}
+Node::~Node() {}
 
 // end of Node Class
 //----------------------------
 
 
-//BankManagmentSystem class
-class BankManagementSystem
+//LinkedList class
+class linkedlist
 {
-public:
-// constructors/destructors section of BankManagementSystem class
-	BankManagementSystem();
-	~BankManagementSystem();
-//function section of BankManagementSystem class
-//data section of BankManagementSystem class
+    //data section of LinkedList class
 private:
+    Node*start;
+public:
+// constructors/destructors section of LinkedList class
+	linkedlist();
+    ~linkedlist();
+//function section of LinkedList class
+
 
 };
 
 
-//end of BankManagementSystem class-------definition
+//end of LinkedList class-------definition
 
-//constructors/destructors section of BankManagementSystem class------------implementation
-BankManagementSystem::BankManagementSystem() {}
+//constructors/destructors section of LinkedList class------------implementation
+linkedlist::linkedlist() {}
 
-BankManagementSystem::~BankManagementSystem() {}
+linkedlist::~linkedlist() {}
 
 
-//functions section of BankManagementSystem class -------------------implementation
+//functions section of LinkedList class -------------------implementation
 
 
 
