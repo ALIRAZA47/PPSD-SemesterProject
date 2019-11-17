@@ -86,6 +86,17 @@ Account::~Account() {}
 
 //------------------------------
 
+
+// NODE CLASS
+class Node
+{
+
+} ;
+
+// end of Node Class
+//----------------------------
+
+
 //BankManagmentSystem class
 class BankManagementSystem
 {
@@ -94,8 +105,6 @@ public:
 	BankManagementSystem();
 	~BankManagementSystem();
 //function section of BankManagementSystem class
-	// start of searchfunction
-
 //data section of BankManagementSystem class
 private:
 
