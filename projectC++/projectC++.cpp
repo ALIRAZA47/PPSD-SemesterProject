@@ -11,6 +11,7 @@ Main idea behind is ease in banking system
 *******************************
 */
 
+// CHECKING THE CODE
 
 //Start of library files section
 
