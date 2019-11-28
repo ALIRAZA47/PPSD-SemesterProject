@@ -138,11 +138,17 @@ public:
 // constructors/destructors section of BankManSystem class
     BankManSystem();
     ~BankManSystem();
-//function section of BankManSystem class
+	bool searchByAccNo(int id);
+	//function section of BankManSystem class
     void search1();
+	bool searchByAccNo();
     void displayAllAccounts();
     void display1(Node*node);
 	void accOptions();
+	int balanceCheck(int);
+	void modifyAddress(int id);
+	void modifyCNIC(int id);
+	void accDetails(int id);
 };
 
 
@@ -161,6 +167,19 @@ BankManSystem::~BankManSystem() {}
 
 
 // firstAccount OF SEARCH FUNTION---------------------implementation
+bool BankManSystem::searchByAccNo(int id)
+{
+	Node* temp = firstAccount;
+	while (temp != NULL)
+	{
+		if (temp->objectOfAccountClass.AccountNumber == id)
+			return true;
+		temp = temp->getnext();
+	}
+	return false;
+}
+
+
 void BankManSystem::search1()
 {
     int choice;
@@ -203,7 +222,7 @@ void BankManSystem::search1()
         }
     case 3:
         {
-         long mobilenumber;
+         long long mobilenumber;
         cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
         cin >> mobilenumber;
         Node*temp2=firstAccount;
@@ -267,6 +286,7 @@ void BankManSystem::displayAllAccounts()
 //account options function here
 void BankManSystem::accOptions()
 {
+	int id;
 	char accOption;
 	printf("\n1. Check Balance--");
 	printf("\n2. Account Details--");
@@ -279,9 +299,20 @@ void BankManSystem::accOptions()
 	case 1:
 		cout << endl;
 		cout << "Check Balance" << endl;
+		cout << "Enter Account Number ---> ";
+		cin >> id;
+		if (balanceCheck(id) == -1)
+			cout << "Incorrect Account Number--" << endl;
+		else
+		{
+			cout << "Your Current Balance is -->" << balanceCheck(id) << endl;
+		}
 		break;
 	case 2:
 		cout << "Account Details" << endl;
+		cout << "Enter Account Number-->  ";
+		cin >> id;
+		accDetails(id);
 		break;
 	case 3:
 		cout << "MOdify CNIC" << endl;
@@ -291,6 +322,62 @@ void BankManSystem::accOptions()
 		break;
 	default:
 		break;
+	}
+}
+
+
+int BankManSystem::balanceCheck(int id)
+{
+	if (searchByAccNo(id))
+	{
+		Node* temp = firstAccount;
+		while (temp != NULL)
+		{
+			if (temp->objectOfAccountClass.AccountNumber = id)
+			{
+				return temp->objectOfAccountClass.CashInAccount;
+			}
+			temp = temp->getnext();
+		}
+	}
+	else
+		return -1;
+}
+void BankManSystem::accDetails(int id)
+{
+	if (searchByAccNo(id))
+	{
+		Node* temp = firstAccount;
+		while (temp != NULL)
+		{
+			if (temp->objectOfAccountClass.AccountNumber == id)
+			{
+				return display1(temp);
+			}
+			temp = temp->getnext();
+		}
+	}
+	else
+	{
+		cout << "Invalid Account Number--" << endl;
+	}
+}
+void BankManSystem::modifyCNIC(int id)
+{
+	if (searchByAccNo(id))
+	{
+		int newCNIC;
+		cout << "Account ID is correct now to Preceed Enter New CNIC number--> ";
+		cin >> newCNIC;
+		Node* temp = firstAccount;
+		while (temp!=NULL)
+		{
+			if (temp->objectOfAccountClass.AccountNumber == id)
+			{
+				temp->objectOfAccountClass.CnicNumber = newCNIC;
+				return;
+			}
+		}
 	}
 }
 
@@ -358,6 +445,7 @@ int main()
 
     }
     while (choiceToExitLoop == 'y' );
+
 
 
     return 0;
