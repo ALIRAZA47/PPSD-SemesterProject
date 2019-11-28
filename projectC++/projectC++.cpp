@@ -13,7 +13,7 @@ Main idea behind is ease in banking system
 
 // CHECKING THE CODE
 
-//Start of library files section
+//firstAccount of library files section
 
 #include <iostream>
 #include <string>
@@ -26,30 +26,30 @@ Main idea behind is ease in banking system
 //End of library files section
 
 
-//start of namespace section
+//firstAccount of namespace section
 
 using namespace std;
 
 //end of namespace section
 
 
-//start constants section
+//firstAccount constants section
 
 const int NumberOfTotalAccounts = 5;
-
+int acountNumber = 0;
 //end of constants section
 
 
-//------start of classes or user defined types-------CLASSES
+//------firstAccount of classes or user defined types-------CLASSES
 
-//start of ACCOUNT class declaration----
+//firstAccount of ACCOUNT class declaration----
 class Account
 {
 public:
     //------- DECLARATION OF THE ATTRIBUTES WHICH WE REQURIED FOR AN ACCOUNT
     int AccountNumber;
     int CashInAccount;
-    long MobileNumber;
+    long long MobileNumber;
     string CnicNumber;
     string NameOfAccountHolder;
     string CityOfAccountHolder;
@@ -70,7 +70,7 @@ private:
 ACCOUNT class DEFINITION ended
 -----------
 */
-//start of ACCOUNT class implementation
+//firstAccount of ACCOUNT class implementation
 
 //CONSTRUCTORS and DESTRUCTORS section------ IMPLEMENTATION
 Account::Account() {}
@@ -128,39 +128,40 @@ Node::~Node() {}
 //----------------------------
 
 
-//LinkedList class
-class linkedlist
+//BankManSystem class
+class BankManSystem
 {
-    //data section of LinkedList class
+    //data section of BankManSystem class
 private:
-    Node*start;
+    Node* firstAccount;
 public:
-// constructors/destructors section of LinkedList class
-    linkedlist();
-    ~linkedlist();
-//function section of LinkedList class
+// constructors/destructors section of BankManSystem class
+    BankManSystem();
+    ~BankManSystem();
+//function section of BankManSystem class
     void search1();
     void displayAllAccounts();
     void display1(Node*node);
+	void accOptions();
 };
 
 
-//end of LinkedList class-------definition
+//end of BankManSystem class-------definition
 
-//constructors/destructors section of LinkedList class------------implementation
-linkedlist::linkedlist()
+//constructors/destructors section of BankManSystem class------------implementation
+BankManSystem::BankManSystem()
 {
-    start = NULL;
+    firstAccount = NULL;
 }
 
-linkedlist::~linkedlist() {}
+BankManSystem::~BankManSystem() {}
 
 
-//functions section of LinkedList class -------------------implementation
+//functions section of BankManSystem class -------------------implementation
 
 
-// START OF SEARCH FUNTION---------------------implementation
-void linkedlist::search1()
+// firstAccount OF SEARCH FUNTION---------------------implementation
+void BankManSystem::search1()
 {
     int choice;
 //asking Choice
@@ -171,7 +172,7 @@ void linkedlist::search1()
     cout << "PRESS 4 IF YOU WANT TO SEACRH BY CNIC NUMBER" << endl ;
     cin >> choice ;
 
-// start of switch statement
+// firstAccount of switch statement
     switch (choice)
     {
     case 1:
@@ -179,7 +180,7 @@ void linkedlist::search1()
         string NAME;
         cout << "ENTER THE NAME OF THE ACCOUNT HOLDER" << endl;
         cin >> NAME;
-        Node*temp=start;                    // temp is the pointer which we use to find the required node
+        Node*temp=firstAccount;                    // temp is the pointer which we use to find the required node
         while(temp->objectOfAccountClass.NameOfAccountHolder != NAME && temp != NULL)
         {
             temp=temp->getnext();
@@ -192,7 +193,7 @@ void linkedlist::search1()
         int number;
         cout << "ENTER THE ACCOUNT NUMBER OF THE ACCOUNT HOLDER" << endl;
         cin >> number;
-        Node*temp1=start;
+        Node*temp1=firstAccount;
           while(temp1->objectOfAccountClass.AccountNumber != number && temp1 != NULL)
         {
             temp1=temp1->getnext();
@@ -205,7 +206,7 @@ void linkedlist::search1()
          long mobilenumber;
         cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
         cin >> mobilenumber;
-        Node*temp2=start;
+        Node*temp2=firstAccount;
           while(temp2->objectOfAccountClass.MobileNumber != mobilenumber && temp2 != NULL)
         {
             temp2=temp2->getnext();
@@ -218,7 +219,7 @@ void linkedlist::search1()
         string cnic;
         cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
         cin >> cnic;
-        Node*temp3=start;
+        Node*temp3=firstAccount;
           while(temp3->objectOfAccountClass.CnicNumber != cnic && temp3 != NULL)
         {
             temp3=temp3->getnext();
@@ -237,7 +238,7 @@ void linkedlist::search1()
 
 
 // INNER display function to which we will pass node
-void linkedlist::display1(Node*node)
+void BankManSystem::display1(Node*node)
     {
         cout << "-------------------------------------" << endl;
         cout << "FOLLOWING ARE THe DETAILS OF THE ACCOUNTS " << endl;
@@ -252,10 +253,10 @@ void linkedlist::display1(Node*node)
     } // END OF INNER DISPLAY FUNCTION-------------------------- implementation
 
 
-//START OF DISPLAY_ALL_ACCOUNTS FUNCTION ----------------- implementation
-void linkedlist::displayAllAccounts()
+//firstAccount OF DISPLAY_ALL_ACCOUNTS FUNCTION ----------------- implementation
+void BankManSystem::displayAllAccounts()
 {
-    Node*temp=start;
+    Node*temp=firstAccount;
     while(temp!=NULL)
     {
         display1(temp);
@@ -263,15 +264,42 @@ void linkedlist::displayAllAccounts()
     }
 } // END OF DISPLAY_ALL_ACCOUNTS FUNCTION ------------------ implementation
 
+//account options function here
+void BankManSystem::accOptions()
+{
+	char accOption;
+	printf("\n1. Check Balance--");
+	printf("\n2. Account Details--");
+	printf("\n3. Modify CNIC--");
+	printf("\n4. Modify Address--");
+	printf("\n Enter Choice (1-3) -->  ");
+	cin >> accOption;
+	switch (accOption)
+	{
+	case 1:
+		cout << endl;
+		cout << "Check Balance" << endl;
+		break;
+	case 2:
+		cout << "Account Details" << endl;
+		break;
+	case 3:
+		cout << "MOdify CNIC" << endl;
+		break;
+	case 4:
+		cout << "Modify Address" << endl;
+		break;
+	default:
+		break;
+	}
+}
 
-
-//start of main function
+//firstAccount of main function
 int main()
 {
-    //start of variables section--mian()
+    //firstAccount of variables section--mian()
     char  choiceToExitLoop;
     int choiceOfMenu, choiceForInternalSwitch;
-
     //menu to display
 
 
@@ -283,14 +311,15 @@ int main()
     do
     {
 //showing menu
-        printf("\n ::Main Menu::\n");
-        printf("\n1. Make New Account ");
-        printf("\n2. Transfer Amount to Another Account ");
-        printf("\n3. Deposit Amount in Account ");
-        printf("\n4. Withdarw Amount from Account ");
-        printf("\n5. Search an Account ");
-        printf("\n6. Close Account ");
-        printf("\n7. Display Account Holders List ");
+        printf("\n   ::Main Menu::\n");
+        printf("\n1. Make New Account-- ");
+        printf("\n2. Transfer Amount-- ");
+        printf("\n3. Deposit Amount--");
+        printf("\n4. Withdarw Amount from Account--");
+		printf("\n5. Search an Account--");
+        printf("\n6. Close Account--");
+        printf("\n7. Display Account Holders List--");
+		printf("\n8. Account Options--");
         printf("\n \n Select one Option of Your Choice");
         cin >> choiceOfMenu;
 //switch statement to choose menu
@@ -317,6 +346,9 @@ int main()
         case 7:
             cout << "Display Account Holders List Section" << endl;
             break;
+		case 8:
+			cout << "account options" << endl;
+			break;
         default:
             break;
         }
@@ -331,10 +363,10 @@ int main()
     return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+// Run program: Ctrl + F5 or Debug > firstAccount Without Debugging menu
+// Debug program: F5 or Debug > firstAccount Debugging menu
 
-// Tips for Getting Started:
+// Tips for Getting firstAccounted:
 //   1. Use the Solution Explorer window to add/manage files
 //   2. Use the Team Explorer window to connect to source control
 //   3. Use the Output window to see build output and other messages
