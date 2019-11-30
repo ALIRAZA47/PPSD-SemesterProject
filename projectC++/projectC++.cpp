@@ -49,6 +49,7 @@ public:
     //------- DECLARATION OF THE ATTRIBUTES WHICH WE REQURIED FOR AN ACCOUNT
     int AccountNumber;
     int CashInAccount;
+	int PINofAccount;
     long long MobileNumber;
     string CnicNumber;
     string NameOfAccountHolder;
@@ -138,7 +139,7 @@ public:
 // constructors/destructors section of BankManSystem class
     BankManSystem();
     ~BankManSystem();
-	bool searchByAccNo(int id);
+	bool searchByAccNo(int);
 	//function section of BankManSystem class
     void search1();
 	bool searchByAccNo();
@@ -146,9 +147,10 @@ public:
     void display1(Node*node);
 	void accOptions();
 	int balanceCheck(int);
-	void modifyAddress(int id);
-	void modifyCNIC(int id);
-	void accDetails(int id);
+	void modifyAddress(int );
+	void modifyCNIC(int );
+	void accDetails(int );
+	bool isPinCorrect(int, int);
 };
 
 
@@ -174,6 +176,22 @@ bool BankManSystem::searchByAccNo(int id)
 	{
 		if (temp->objectOfAccountClass.AccountNumber == id)
 			return true;
+		temp = temp->getnext();
+	}
+	return false;
+}
+bool BankManSystem::isPinCorrect(int id, int pin)
+{
+	Node* temp = firstAccount;
+	while (temp != NULL)
+	{
+		if (temp->objectOfAccountClass.AccountNumber == id)
+		{
+			{
+				if(temp->objectOfAccountClass.PINofAccount == pin)
+				return true;
+			}
+		}
 		temp = temp->getnext();
 	}
 	return false;
@@ -255,7 +273,6 @@ void BankManSystem::search1()
 
 } // END OF SEARCH FUNCTION ------------------ implementation
 
-
 // INNER display function to which we will pass node
 void BankManSystem::display1(Node*node)
     {
@@ -303,6 +320,8 @@ void BankManSystem::accOptions()
 		cin >> id;
 		if (balanceCheck(id) == -1)
 			cout << "Incorrect Account Number--" << endl;
+		else if (balanceCheck(id) == -2)
+			cout << "Inccorect PIN--" << endl;
 		else
 		{
 			cout << "Your Current Balance is -->" << balanceCheck(id) << endl;
@@ -316,28 +335,44 @@ void BankManSystem::accOptions()
 		break;
 	case 3:
 		cout << "MOdify CNIC" << endl;
+		cout << "Enter Account Number-->  ";
+		cin >> id;
+		modifyCNIC(id);
 		break;
 	case 4:
-		cout << "Modify Address" << endl;
+		cout << "Modify City" << endl;
+		cout << "Enter Account Number-->  ";
+		cin >> id;
+		modifyAddress(id);
 		break;
 	default:
 		break;
 	}
 }
 
-
+//helper functions for accOptions() function
 int BankManSystem::balanceCheck(int id)
 {
 	if (searchByAccNo(id))
 	{
-		Node* temp = firstAccount;
-		while (temp != NULL)
+		int pin;
+		cout << "Enter Your Pin ---> ";
+		cin >> pin;
+		if (isPinCorrect(pin, id))
 		{
-			if (temp->objectOfAccountClass.AccountNumber = id)
+			Node* temp = firstAccount;
+			while (temp != NULL)
 			{
-				return temp->objectOfAccountClass.CashInAccount;
+				if (temp->objectOfAccountClass.AccountNumber = id)
+				{
+					return temp->objectOfAccountClass.CashInAccount;
+				}
+				temp = temp->getnext();
 			}
-			temp = temp->getnext();
+		}
+		else
+		{
+			return -2;
 		}
 	}
 	else
@@ -347,14 +382,25 @@ void BankManSystem::accDetails(int id)
 {
 	if (searchByAccNo(id))
 	{
-		Node* temp = firstAccount;
-		while (temp != NULL)
+		int pin;
+		cout << "Enter Your Pin ---> ";
+		cin >> pin;
+		if (isPinCorrect(pin, id))
 		{
-			if (temp->objectOfAccountClass.AccountNumber == id)
+			Node* temp = firstAccount;
+			while (temp != NULL)
 			{
-				return display1(temp);
+				if (temp->objectOfAccountClass.AccountNumber == id)
+				{
+					return display1(temp);
+				}
+				temp = temp->getnext();
 			}
-			temp = temp->getnext();
+		}
+		else
+		{
+			cout << "Incorrect PIN Entered--" << endl;
+			return;
 		}
 	}
 	else
@@ -366,24 +412,74 @@ void BankManSystem::modifyCNIC(int id)
 {
 	if (searchByAccNo(id))
 	{
-		int newCNIC;
-		cout << "Account ID is correct now to Preceed Enter New CNIC number--> ";
-		cin >> newCNIC;
-		Node* temp = firstAccount;
-		while (temp!=NULL)
+		int pin;
+		cout << "Enter Your Pin ---> ";
+		cin >> pin;
+		if(isPinCorrect(id, pin))
 		{
-			if (temp->objectOfAccountClass.AccountNumber == id)
+			int newCNIC;
+			cout << "Account ID is correct now to Preceed Enter New CNIC number--> ";
+			cin >> newCNIC;
+			Node* temp = firstAccount;
+			while (temp != NULL)
 			{
-				temp->objectOfAccountClass.CnicNumber = newCNIC;
-				return;
+				if (temp->objectOfAccountClass.AccountNumber == id)
+				{
+					temp->objectOfAccountClass.CnicNumber = newCNIC;
+					return;
+				}
 			}
 		}
+		else
+		{
+			cout << "Incorrect PIN--" << endl;
+			return;
+		}
+	}
+	else
+	{
+		cout << "Invalid ID" << endl;
+	}
+}
+void BankManSystem::modifyAddress(int id)
+{
+	if (searchByAccNo(id))
+	{
+		int pin;
+		cout << "Enter Your Pin ---> ";
+		cin >> pin;
+		if (isPinCorrect(pin, id))
+		if(isPinCorrect(id, pin))
+		{
+			int newCity;
+			cout << "Account ID is correct now to Preceed Enter New City Name--> ";
+			cin >> newCity;
+			Node* temp = firstAccount;
+			while (temp != NULL)
+			{
+				if (temp->objectOfAccountClass.AccountNumber == id)
+				{
+					temp->objectOfAccountClass.CnicNumber = newCity;
+					return;
+				}
+			}
+		}
+		else
+		{
+			cout << "Incorrect PIN--" << endl;
+			return;
+		}
+	}
+	else
+	{
+		cout << "Invalid ID" << endl;
 	}
 }
 
-//firstAccount of main function
+// main function
 int main()
 {
+	BankManSystem bankOBJ;
     //firstAccount of variables section--mian()
     char  choiceToExitLoop;
     int choiceOfMenu, choiceForInternalSwitch;
@@ -434,7 +530,8 @@ int main()
             cout << "Display Account Holders List Section" << endl;
             break;
 		case 8:
-			cout << "account options" << endl;
+			cout << "Account options" << endl;
+			bankOBJ.accOptions();
 			break;
         default:
             break;
