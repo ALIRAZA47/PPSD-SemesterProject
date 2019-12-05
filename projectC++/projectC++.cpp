@@ -548,6 +548,7 @@ int main()
     return 0;
 }
 
+//checked all the modifications
 // Run program: Ctrl + F5 or Debug > firstAccount Without Debugging menu
 // Debug program: F5 or Debug > firstAccount Debugging menu
 
