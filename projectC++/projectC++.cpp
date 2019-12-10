@@ -151,6 +151,7 @@ public:
 	void modifyCNIC(int );
 	void accDetails(int );
 	bool isPinCorrect(int, int);
+	void DelAccount();
 };
 
 
@@ -475,6 +476,77 @@ void BankManSystem::modifyAddress(int id)
 		cout << "Invalid ID" << endl;
 	}
 }
+void BankManSystem::DelAccount()
+{
+    int choice;
+//asking Choice
+    cout << "BY WHICH METHOD YOU WANT TO DELETE" << endl;
+    cout << "PRESS 1 IF YOU WANT TO DELETE BY NAME" << endl;
+    cout << "PRESS 2 IF YOU WANT TO DELETE BY ACCOUNT NUMBER" << endl;
+    cout << "PRESS 3 IF YOU WANT TO DELETE BY MOBILE NUMBER" << endl;
+    cout << "PRESS 4 IF YOU WANT TO DELETE BY CNIC NUMBER" << endl ;
+    cin >> choice ;
+
+// firstAccount of switch statement
+    switch (choice)
+    {
+    case 1:
+        {
+        string NAME;
+        cout << "ENTER THE NAME OF THE ACCOUNT HOLDER" << endl;
+        cin >> NAME;
+        Node*temp=firstAccount;                    // temp is the pointer which we use to find the required node
+        while(temp->getnext()->objectOfAccountClass.NameOfAccountHolder != NAME && temp != NULL)
+        {
+            temp=temp->getnext();
+        }
+        temp->setnext(temp->getnext()->getnext());
+        break;
+        }
+    case 2:
+        {
+            int number;
+            cout<<"ENTER THE NUMBER OF ACCOUNT HOLDER:"<<endl;
+            cin>>number;
+            Node*temp1=firstAccount;
+            while(temp1->getnext()->objectOfAccountClass.AccountNumber != number && temp1!=NULL)
+            {
+                temp1=temp1->getnext();
+            }
+            temp1->setnext(temp1->getnext()->getnext());
+            break;
+        }
+        case 3:
+        {
+         long long mobilenumber;
+        cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
+        cin >> mobilenumber;
+        Node*temp2=firstAccount;
+          while(temp2->getnext()->objectOfAccountClass.MobileNumber != mobilenumber && temp2 != NULL)
+        {
+            temp2=temp2->getnext();
+        }
+        temp2->setnext(temp2->getnext()->getnext());
+        break;
+        }
+         case 4:
+        {
+        string cnic;
+        cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
+        cin >> cnic;
+        Node*temp3=firstAccount;
+          while(temp3->objectOfAccountClass.CnicNumber != cnic && temp3 != NULL)
+        {
+            temp3=temp3->getnext();
+        }
+        temp3->setnext(temp3->getnext()->getnext());
+        break;
+        }
+    default:
+        cout << "INVALID CHOICE" << endl;
+
+    }
+    }
 
 // main function
 int main()
@@ -503,6 +575,7 @@ int main()
         printf("\n6. Close Account--");
         printf("\n7. Display Account Holders List--");
 		printf("\n8. Account Options--");
+		printf("\n9. Delete Account--");
         printf("\n \n Select one Option of Your Choice");
         cin >> choiceOfMenu;
 //switch statement to choose menu
@@ -533,6 +606,10 @@ int main()
 			cout << "Account options" << endl;
 			bankOBJ.accOptions();
 			break;
+        case 9:
+            cout<<"DELETE ACCOUNT"<<endl;
+            bankOBJ.DelAccount();
+            break;
         default:
             break;
         }
