@@ -255,7 +255,7 @@ void BankManSystem::search1()
     case 4:
         {
         string cnic;
-        cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
+        cout << "ENTER THE CNIC NUMBER OF THE ACCOUNT HOLDER" << endl;
         cin >> cnic;
         Node*temp3=firstAccount;
           while(temp3->objectOfAccountClass.CnicNumber != cnic && temp3 != NULL)
@@ -625,7 +625,7 @@ int main()
     return 0;
 }
 
-//checked all the modifications
+//checked all the recent modifications by zeemal urroj
 // Run program: Ctrl + F5 or Debug > firstAccount Without Debugging menu
 // Debug program: F5 or Debug > firstAccount Debugging menu
 
