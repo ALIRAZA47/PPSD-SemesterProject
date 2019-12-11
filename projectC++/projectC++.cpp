@@ -37,6 +37,7 @@ using namespace std;
 
 const int NumberOfTotalAccounts = 5;
 int acountNumber = 0;
+//when new account is created it will given this acount number then it will be incremented
 //end of constants section
 
 
@@ -198,10 +199,37 @@ bool BankManSystem::isPinCorrect(int id, int pin)
 	}
 	return false;
 }
-// Add New Account
+// Add New Account "Qazi Arsalan"
 void BankManSystem::addNewAccount()
 {
-	// this will add new account
+	if (acountNumber <= NumberOfTotalAccounts)
+	{
+		string name, cnic, email, city;
+		long long mob;
+		cout << "Enter Your Name \n";
+		cin >> name;
+		cout << "Enter Your CNIC \n";
+		cin >> cnic;
+		cout << "Enter Your City \n";
+		cin >> city;
+		cout << "Enter your Email \n";
+		cin >> email;
+		cout << "Enter Your Mobile Number\n";
+		cin >> mob;
+		cout << "Enter Five Digit Pin \n";
+		cin >> pin;
+		cout << "Deposit Atleast Rs 500 to Your Account\n";
+		cin >> amount;
+		while (amount < 500)
+		{
+			cout << "Please Deposit atleast Rs 500\n";
+			cout << "Enter Ammount\n";
+			cin >> amount;
+		}
+		Node *temp = firstAccount;
+		
+
+	}
 }
 
 
