@@ -105,6 +105,17 @@ public:
 
     // constructor and destructor of class Node;
     Node();
+	Node(int pin, int cash, int accNo, long long phNumber, string name, string cnic, string email, string city)
+	{
+		objectOfAccountClass.AccountNumber = accNo;
+		objectOfAccountClass.PINofAccount = pin;
+		objectOfAccountClass.CashInAccount = cash;
+		objectOfAccountClass.NameOfAccountHolder = name;
+		objectOfAccountClass.CityOfAccountHolder = city;
+		objectOfAccountClass.CnicNumber = cnic;
+		objectOfAccountClass.EmailOfAccoutHolder = email;
+		objectOfAccountClass.MobileNumber = phNumber;
+	}
     ~Node();
 
     // GETTER AND SETTER OF Node CLASS to get and set NEXT Node
@@ -226,9 +237,25 @@ void BankManSystem::addNewAccount()
 			cout << "Enter Ammount\n";
 			cin >> amount;
 		}
+		Node *newNode = new Node(pin, amount, acountNumber, mob, name, cnic, email, city);
 		Node *temp = firstAccount;
-		
+		if (temp == NULL)
+		{
+			firstAccount = newNode;
+			return;
+		}
+		else {
 
+			while (temp->getnext != NULL)
+			{
+				temp = temp->getnext();
+			}
+			temp->setnext(newNode);
+			cout << "Congratulations....!! \n Your Account has been created \n";
+			acountNumber++;
+			return;
+		}
+		
 	}
 }
 
@@ -521,7 +548,7 @@ void BankManSystem::DelAccount()
     cout << "PRESS 3 IF YOU WANT TO DELETE BY MOBILE NUMBER" << endl;
     cout << "PRESS 4 IF YOU WANT TO DELETE BY CNIC NUMBER" << endl ;
     cin >> choice ;
-
+	// check pin will be added .........
 // firstAccount of switch statement
     switch (choice)
     {
@@ -624,13 +651,13 @@ int main()
             cout << "Amount Transfer Section" << endl;
             break;
         case 3:
-            cout << "Amount Deposit Section" << endl;
+            cout << "Amount Deposit Section" << endl; // qazi arsalan
             break;
         case 4:
             cout << "Withdraw Section" << endl;
             break;
         case 5:
-            cout << "Search an Account" << endl;
+            cout << "Search an Account" << endl; // uzair
             break;
         case 6:
             cout << "Close Account Section" << endl;
