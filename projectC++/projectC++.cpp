@@ -139,6 +139,7 @@ public:
 // constructors/destructors section of BankManSystem class
     BankManSystem();
     ~BankManSystem();
+	void addNewAccount(); // added by @qaziArsalan Dated: 11 dec 2019
 	bool searchByAccNo(int);
 	//function section of BankManSystem class
     void search1();
@@ -197,6 +198,12 @@ bool BankManSystem::isPinCorrect(int id, int pin)
 	}
 	return false;
 }
+// Add New Account
+void BankManSystem::addNewAccount()
+{
+	// this will add new account
+}
+
 
 
 void BankManSystem::search1()
@@ -583,6 +590,7 @@ int main()
         {
         case 1:
             cout << "Making New Account" << endl;
+
             break;
         case 2:
             cout << "Amount Transfer Section" << endl;
