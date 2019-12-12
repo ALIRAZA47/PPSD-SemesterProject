@@ -471,9 +471,10 @@ void BankManSystem::accDetails(int id)
 		cout << "Invalid Account Number--" << endl;
 	}
 }
+// Modify the cnic
 void BankManSystem::modifyCNIC(int id)
 {
-	if (searchByAccNo(id))
+	if (searchByAccNo(id)) // search account
 	{
 		int pin;
 		cout << "Enter Your Pin ---> ";
