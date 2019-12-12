@@ -201,10 +201,10 @@ bool BankManSystem::isPinCorrect(int id, int pin)
 	{
 		if (temp->objectOfAccountClass.AccountNumber == id)
 		{
-			{
+			
 				if(temp->objectOfAccountClass.PINofAccount == pin)
 				return true;
-			}
+			
 		}
 		temp = temp->getnext();
 	}
@@ -540,6 +540,7 @@ void BankManSystem::modifyAddress(int id)
 }
 void BankManSystem::DelAccount()
 {
+	int id, pin;
     int choice;
 //asking Choice
     cout << "BY WHICH METHOD YOU WANT TO DELETE" << endl;
@@ -548,22 +549,43 @@ void BankManSystem::DelAccount()
     cout << "PRESS 3 IF YOU WANT TO DELETE BY MOBILE NUMBER" << endl;
     cout << "PRESS 4 IF YOU WANT TO DELETE BY CNIC NUMBER" << endl ;
     cin >> choice ;
-	// check pin will be added .........
+	// check pin will be added .........    //added today with some minor changes in uzair's code 12 dec
 // firstAccount of switch statement
     switch (choice)
     {
     case 1:
         {
+		// PIN VALIDATION ADDED "QAZI ARSALAN SHAH"
         string NAME;
         cout << "ENTER THE NAME OF THE ACCOUNT HOLDER" << endl;
         cin >> NAME;
         Node*temp=firstAccount;                    // temp is the pointer which we use to find the required node
-        while(temp->getnext()->objectOfAccountClass.NameOfAccountHolder != NAME && temp != NULL)
+        while(temp->getnext()->objectOfAccountClass.NameOfAccountHolder != NAME && temp->getnext() != NULL)
         {
-            temp=temp->getnext();
+			temp = temp->getnext();           // searches
         }
-        temp->setnext(temp->getnext()->getnext());
-        break;
+		if (temp->getnext()->objectOfAccountClass.NameOfAccountHolder == NAME) //if found
+		{
+			id = temp->getnext()->objectOfAccountClass.AccountNumber; // pin check
+			cout << "Enter Pin \n";
+			
+			cin >> pin;
+			if (isPinCorrect(pin, id)) // if correct deletes account
+			{
+				temp->setnext(temp->getnext()->getnext());
+				cout << "Account Deleted \n";
+				return;
+				break;
+			}
+			else {
+				cout << "Invalid Pin \n"; 
+				return;
+			}
+		}
+		else{
+			cout << "Account Not found \n";  // not found returns
+			return;
+		}
         }
     case 2:
         {
@@ -571,12 +593,32 @@ void BankManSystem::DelAccount()
             cout<<"ENTER THE NUMBER OF ACCOUNT HOLDER:"<<endl;
             cin>>number;
             Node*temp1=firstAccount;
-            while(temp1->getnext()->objectOfAccountClass.AccountNumber != number && temp1!=NULL)
+            while(temp1->getnext()->objectOfAccountClass.AccountNumber != number && temp1->getnext()!=NULL)
             {
                 temp1=temp1->getnext();
             }
-            temp1->setnext(temp1->getnext()->getnext());
-            break;
+			if (temp1->getnext()->objectOfAccountClass.AccountNumber == number)
+			{
+				id = temp1->getnext()->objectOfAccountClass.AccountNumber; // pin check
+				cout << "Enter Pin \n";
+				cin >> pin;
+				if (isPinCorrect(pin, id)) // if correct deletes account
+				{
+					temp1->setnext(temp1->getnext()->getnext());
+					cout << "Account Deleted \n";
+					return;
+					break;
+				}
+				else {
+					cout << "Invalid Pin \n";
+					return;
+				}
+			}
+			else {
+				cout << "Account Not Found\n";
+				return;
+			}
+            
         }
         case 3:
         {
@@ -584,25 +626,67 @@ void BankManSystem::DelAccount()
         cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
         cin >> mobilenumber;
         Node*temp2=firstAccount;
-          while(temp2->getnext()->objectOfAccountClass.MobileNumber != mobilenumber && temp2 != NULL)
+          while(temp2->getnext()->objectOfAccountClass.MobileNumber != mobilenumber && temp2->getnext() != NULL)
         {
             temp2=temp2->getnext();
         }
-        temp2->setnext(temp2->getnext()->getnext());
-        break;
+		  if (temp2->getnext()->objectOfAccountClass.MobileNumber == mobilenumber)
+		  {
+			 id = temp2->getnext()->objectOfAccountClass.AccountNumber; // pin check
+			  cout << "Enter Pin \n";
+
+			  cin >> pin;
+			  if (isPinCorrect(pin, id)) // if correct deletes account
+			  {
+				  temp2->setnext(temp2->getnext()->getnext());
+				  cout << "Account Deleted \n";
+				  return;
+				  break;
+			  }
+			  else {
+				  cout << "Invalid Pin \n";
+				  return;
+			  }
+		  }
+		  else {
+			  cout << "Account Not Found\n";
+			  return;
+		  }
+        
         }
          case 4:
         {
         string cnic;
-        cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
+        cout << "ENTER THE CNIC OF THE ACCOUNT HOLDER" << endl;
         cin >> cnic;
         Node*temp3=firstAccount;
-          while(temp3->objectOfAccountClass.CnicNumber != cnic && temp3 != NULL)
+          while(temp3->objectOfAccountClass.CnicNumber != cnic && temp3->getnext() != NULL)
         {
             temp3=temp3->getnext();
         }
-        temp3->setnext(temp3->getnext()->getnext());
-        break;
+		  if (temp3->getnext()->objectOfAccountClass.CnicNumber== cnic)
+		  {
+			  id = temp3->getnext()->objectOfAccountClass.AccountNumber; // pin check
+			  cout << "Enter Pin \n";
+			 
+			  cin >> pin;
+			  if (isPinCorrect(pin, id)) // if correct deletes account
+			  {
+				  temp3->setnext(temp3->getnext()->getnext());
+				  cout << "Account Deleted \n";
+				  return;
+				  break;
+			  }
+			  else {
+				  cout << "Invalid Pin \n";
+				  return;
+			  }
+		  }
+		  else {
+			  cout << "Account Not Found\n";
+			  return;
+		  }
+        
         }
     default:
         cout << "INVALID CHOICE" << endl;
