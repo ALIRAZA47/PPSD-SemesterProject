@@ -165,6 +165,7 @@ public:
 	void accDetails(int );
 	bool isPinCorrect(int, int);
 	void DelAccount();
+	void WithDraw(int a,int b);
 };
 
 
@@ -201,10 +202,10 @@ bool BankManSystem::isPinCorrect(int id, int pin)
 	{
 		if (temp->objectOfAccountClass.AccountNumber == id)
 		{
-			
+
 				if(temp->objectOfAccountClass.PINofAccount == pin)
 				return true;
-			
+
 		}
 		temp = temp->getnext();
 	}
@@ -255,7 +256,7 @@ void BankManSystem::addNewAccount()
 			acountNumber++;
 			return;
 		}
-		
+
 	}
 }
 
@@ -569,7 +570,7 @@ void BankManSystem::DelAccount()
 		{
 			id = temp->getnext()->objectOfAccountClass.AccountNumber; // pin check
 			cout << "Enter Pin \n";
-			
+
 			cin >> pin;
 			if (isPinCorrect(pin, id)) // if correct deletes account
 			{
@@ -579,7 +580,7 @@ void BankManSystem::DelAccount()
 				break;
 			}
 			else {
-				cout << "Invalid Pin \n"; 
+				cout << "Invalid Pin \n";
 				return;
 			}
 		}
@@ -619,7 +620,7 @@ void BankManSystem::DelAccount()
 				cout << "Account Not Found\n";
 				return;
 			}
-            
+
         }
         case 3:
         {
@@ -653,7 +654,7 @@ void BankManSystem::DelAccount()
 			  cout << "Account Not Found\n";
 			  return;
 		  }
-        
+
         }
          case 4:
         {
@@ -669,7 +670,7 @@ void BankManSystem::DelAccount()
 		  {
 			  id = temp3->getnext()->objectOfAccountClass.AccountNumber; // pin check
 			  cout << "Enter Pin \n";
-			 
+
 			  cin >> pin;
 			  if (isPinCorrect(pin, id)) // if correct deletes account
 			  {
@@ -687,13 +688,55 @@ void BankManSystem::DelAccount()
 			  cout << "Account Not Found\n";
 			  return;
 		  }
-        
+
         }
     default:
         cout << "INVALID CHOICE" << endl;
 
     }
     }
+
+    // START OF WITHDRAW CASH FUNCTION
+    void BankManSystem::WithDraw(int number,int pin)
+    {
+        int WithDrawAmount;
+        Node*temp = firstAccount;
+        if(temp == NULL )
+        {
+            cout << "There is no account" << endl;
+            return;
+        }
+        else
+        {
+            while(temp->objectOfAccountClass.AccountNumber != number && temp != NULL)
+            {
+                temp = temp->getnext();
+            }
+            if(temp == NULL )
+            {
+            cout << "There is no such account" << endl;
+            return;
+            }
+            if(pin == temp->objectOfAccountClass.PINofAccount)
+            {
+                cout << "The available amount in the account is " << temp->objectOfAccountClass.CashInAccount << endl;
+                cout << "Enter The amount you want to withdraw" << endl;
+                cin >> WithDrawAmount ;
+                if(WithDrawAmount > temp->objectOfAccountClass.CashInAccount)
+                {
+                    cout << "Invalid Amount" << endl;
+                    cout << "Enter The amount you want to withdraw" << endl;
+                    cin >> WithDrawAmount ;
+                }
+                else
+                {
+                    temp->objectOfAccountClass.CashInAccount = temp->objectOfAccountClass.CashInAccount - WithDrawAmount;
+                    cout << "Your remaining amount of cash in the account is " << temp->objectOfAccountClass.CashInAccount << endl;
+                }
+            }
+        }
+    }
+    // END OF WITHDRAW FUNCTION
 
 // main function
 int main()
@@ -717,7 +760,7 @@ int main()
         printf("\n1. Make New Account-- ");
         printf("\n2. Transfer Amount-- ");
         printf("\n3. Deposit Amount--");
-        printf("\n4. Withdarw Amount from Account--");
+        printf("\n4. Withdraw Amount from Account--");
 		printf("\n5. Search an Account--");
         printf("\n6. Close Account--");
         printf("\n7. Display Account Holders List--");
@@ -736,13 +779,20 @@ int main()
             cout << "Amount Transfer Section" << endl;
             break;
         case 3:
-            cout << "Amount Deposit Section" << endl; // qazi arsalan
+            cout << "Amount Deposit Section" << endl;
             break;
         case 4:
-            cout << "Withdraw Section" << endl;
+            {
+                int accountnumber,pincode1;
+                cout << "Enter the Account Number " << endl;
+                cin >> accountnumber;
+                cout << "Enter the pin " << endl;
+                cin >> pincode1;
+                bankOBJ.WithDraw(accountnumber,pincode1);
             break;
+            }
         case 5:
-            cout << "Search an Account" << endl; // uzair
+            cout << "Search an Account" << endl;
             break;
         case 6:
             cout << "Close Account Section" << endl;
