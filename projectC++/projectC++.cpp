@@ -547,6 +547,7 @@ void BankManSystem::DelAccount()
 
     }
     }
+    //END OF DELETE FUNCTION.
 
 // main function
 int main()
