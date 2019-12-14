@@ -738,6 +738,10 @@ void BankManSystem::DelAccount()
         }
     }
     // END OF WITHDRAW FUNCTION
+     void BankManSystem::Deposit(int number,int pin)
+     {
+
+     }
 
 // main function
 int main()
