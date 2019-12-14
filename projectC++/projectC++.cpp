@@ -166,6 +166,7 @@ public:
 	bool isPinCorrect(int, int);
 	void DelAccount();
 	void WithDraw(int a,int b);
+	void DepositAmount(int a,int b,int c);
 };
 
 
@@ -738,11 +739,35 @@ void BankManSystem::DelAccount()
         }
     }
     // END OF WITHDRAW FUNCTION
-     void BankManSystem::Deposit(int number,int pin)
+     void BankManSystem::DepositAmount(int number,int pin,int ammount)
      {
-
+        int NewAmountInAccount;
+        Node*temp = firstAccount;
+        if(temp == NULL )
+        {
+            cout << "There is no account" << endl;
+            return;
+        }
+        else
+        {
+            while(temp->objectOfAccountClass.AccountNumber != number && temp != NULL)
+            {
+                temp = temp->getnext();
+            }
+            if(temp == NULL )
+            {
+            cout << "There is no such account" << endl;
+            return;
+            }
+            if(pin == temp->objectOfAccountClass.PINofAccount)
+            {
+                cout << "The previous available amount in the account is " << temp->objectOfAccountClass.CashInAccount << endl;
+                temp->objectOfAccountClass.CashInAccount = temp->objectOfAccountClass.CashInAccount + ammount;
+                cout << "The current available amount in the account is " << temp->objectOfAccountClass.CashInAccount << endl;
+            }
+        }        `
      }
-
+// END OF DEPOSIT AccouNT FUNCTION
 // main function
 int main()
 {
@@ -771,6 +796,7 @@ int main()
         printf("\n7. Display Account Holders List--");
 		printf("\n8. Account Options--");
 		printf("\n9. Delete Account--");
+		 printf("\n10. Deposit Amount in Account--");
         printf("\n \n Select one Option of Your Choice");
         cin >> choiceOfMenu;
 //switch statement to choose menu
@@ -810,9 +836,23 @@ int main()
 			bankOBJ.accOptions();
 			break;
         case 9:
+            {
             cout<<"DELETE ACCOUNT"<<endl;
             bankOBJ.DelAccount();
             break;
+            }
+        case 10:
+            {
+                int accountnumber1,pincode2,NewAmmount;
+                cout << "Enter the Account Number " << endl;
+                cin >> accountnumber1;
+                cout << "Enter the pin " << endl;
+                cin >> pincode2;
+                cout << "Enter the amount you want to add" << endl;
+                cin >> NewAmmount;
+                bankOBJ.DepositAmount(accountnumber1,pincode2,NewAmmount);
+            break;
+            }
         default:
             break;
         }
