@@ -564,6 +564,11 @@ void BankManSystem::DelAccount()
 		cout << "ENTER THE NAME OF THE ACCOUNT HOLDER" << endl;
 		cin >> NAME;
 		Node*temp = firstAccount;                    // temp is the pointer which we use to find the required node
+		if(temp->objectAccountClass.NameOfAccountHolder == NAME)
+        {
+            firstAccount = firstAccount->getnext();
+            return;
+        }
 		while (temp->getnext()->objectOfAccountClass.NameOfAccountHolder != NAME && temp->getnext() != NULL)
 		{
 			temp = temp->getnext();           // searches
@@ -597,6 +602,11 @@ void BankManSystem::DelAccount()
 		cout << "ENTER THE NUMBER OF ACCOUNT HOLDER:" << endl;
 		cin >> number;
 		Node*temp1 = firstAccount;
+		if(temp->objectAccountClass.AccountNumber == number)
+        {
+            firstAccount = firstAccount->getnext();
+            return;
+        }
 		while (temp1->getnext()->objectOfAccountClass.AccountNumber != number && temp1->getnext() != NULL)
 		{
 			temp1 = temp1->getnext();
@@ -630,6 +640,11 @@ void BankManSystem::DelAccount()
 		cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
 		cin >> mobilenumber;
 		Node*temp2 = firstAccount;
+		if(temp->objectAccountClass.MobileNumber == mobilenumber)
+        {
+            firstAccount = firstAccount->getnext();
+            return;
+        }
 		while (temp2->getnext()->objectOfAccountClass.MobileNumber != mobilenumber && temp2->getnext() != NULL)
 		{
 			temp2 = temp2->getnext();
@@ -664,6 +679,11 @@ void BankManSystem::DelAccount()
 		cout << "ENTER THE CNIC OF THE ACCOUNT HOLDER" << endl;
 		cin >> cnic;
 		Node*temp3 = firstAccount;
+		if(temp->objectAccountClass.CnicNumber== cnic)
+        {
+            firstAccount = firstAccount->getnext();
+            return;
+        }
 		while (temp3->objectOfAccountClass.CnicNumber != cnic && temp3->getnext() != NULL)
 		{
 			temp3 = temp3->getnext();
@@ -696,8 +716,7 @@ void BankManSystem::DelAccount()
 		cout << "INVALID CHOICE" << endl;
 
 	}
-}
-//END OF DELETE FUNCTION.
+}//END OF DELETE FUNCTION.
 
 // START OF WITHDRAW CASH FUNCTION
 void BankManSystem::WithDraw(int number, int pin)
