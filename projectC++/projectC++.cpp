@@ -47,22 +47,22 @@ int acountNumber = 0;
 class Account
 {
 public:
-    //------- DECLARATION OF THE ATTRIBUTES WHICH WE REQURIED FOR AN ACCOUNT
-    int AccountNumber;
-    int CashInAccount;
+	//------- DECLARATION OF THE ATTRIBUTES WHICH WE REQURIED FOR AN ACCOUNT
+	int AccountNumber;
+	int CashInAccount;
 	int PINofAccount;
-    long long MobileNumber;
-    string CnicNumber;
-    string NameOfAccountHolder;
-    string CityOfAccountHolder;
-    string EmailOfAccoutHolder;
-//-----CONSTRUCTORS and DESTRUCTORS section------ DECLARATION
-    Account();
-    ~Account();
-//----- FUNCTIONS declaration section
+	long long MobileNumber;
+	string CnicNumber;
+	string NameOfAccountHolder;
+	string CityOfAccountHolder;
+	string EmailOfAccoutHolder;
+	//-----CONSTRUCTORS and DESTRUCTORS section------ DECLARATION
+	Account();
+	~Account();
+	//----- FUNCTIONS declaration section
 
 
-//private or data definition section
+	//private or data definition section
 private:
 
 };
@@ -94,17 +94,17 @@ Account::~Account() {}
 // Node CLASS
 class Node
 {
-    // -------private section of class Node
+	// -------private section of class Node
 private:
-    // attributes of private section
-    Node *next;
-    // ----------Public section of class Node
+	// attributes of private section
+	Node *next;
+	// ----------Public section of class Node
 public:
-    // Object of account class
-    Account objectOfAccountClass;
+	// Object of account class
+	Account objectOfAccountClass;
 
-    // constructor and destructor of class Node;
-    Node();
+	// constructor and destructor of class Node;
+	Node();
 	Node(int pin, int cash, int accNo, long long phNumber, string name, string cnic, string email, string city)
 	{
 		objectOfAccountClass.AccountNumber = accNo;
@@ -116,24 +116,24 @@ public:
 		objectOfAccountClass.EmailOfAccoutHolder = email;
 		objectOfAccountClass.MobileNumber = phNumber;
 	}
-    ~Node();
+	~Node();
 
-    // GETTER AND SETTER OF Node CLASS to get and set NEXT Node
-    void setnext(Node* b)
-    {
-        next = b;
-    }
-    Node* getnext()
-    {
-        return next;
-    }
-} ;
+	// GETTER AND SETTER OF Node CLASS to get and set NEXT Node
+	void setnext(Node* b)
+	{
+		next = b;
+	}
+	Node* getnext()
+	{
+		return next;
+	}
+};
 
 
 //constructors/destructor section of Node class------------implementation
 Node::Node()
 {
-    next=NULL;
+	next = NULL;
 }
 Node::~Node() {}
 
@@ -144,29 +144,29 @@ Node::~Node() {}
 //BankManSystem class
 class BankManSystem
 {
-    //data section of BankManSystem class
+	//data section of BankManSystem class
 private:
-    Node* firstAccount;
+	Node* firstAccount;
 public:
-// constructors/destructors section of BankManSystem class
-    BankManSystem();
-    ~BankManSystem();
+	// constructors/destructors section of BankManSystem class
+	BankManSystem();
+	~BankManSystem();
 	void addNewAccount(); // added by @qaziArsalan Dated: 11 dec 2019
 	bool searchByAccNo(int);
 	//function section of BankManSystem class
-    void search1();
+	void search1();
 	bool searchByAccNo();
-    void displayAllAccounts();
-    void display1(Node*node);
+	void displayAllAccounts();
+	void display1(Node*node);
 	void accOptions();
 	int balanceCheck(int);
-	void modifyAddress(int );
-	void modifyCNIC(int );
-	void accDetails(int );
+	void modifyAddress(int);
+	void modifyCNIC(int);
+	void accDetails(int);
 	bool isPinCorrect(int, int);
 	void DelAccount();
-	void WithDraw(int a,int b);
-	void DepositAmount(int a,int b,int c);
+	void WithDraw(int a, int b);
+	void DepositAmount(int a, int b, int c);
 };
 
 
@@ -175,7 +175,7 @@ public:
 //constructors/destructors section of BankManSystem class------------implementation
 BankManSystem::BankManSystem()
 {
-    firstAccount = NULL;
+	firstAccount = NULL;
 }
 
 BankManSystem::~BankManSystem() {}
@@ -204,7 +204,7 @@ bool BankManSystem::isPinCorrect(int id, int pin)
 		if (temp->objectOfAccountClass.AccountNumber == id)
 		{
 
-				if(temp->objectOfAccountClass.PINofAccount == pin)
+			if (temp->objectOfAccountClass.PINofAccount == pin)
 				return true;
 
 		}
@@ -219,6 +219,7 @@ void BankManSystem::addNewAccount()
 	{
 		string name, cnic, email, city;
 		long long mob;
+		int pin, amount;
 		cout << "Enter Your Name \n";
 		cin >> name;
 		cout << "Enter Your CNIC \n";
@@ -248,7 +249,7 @@ void BankManSystem::addNewAccount()
 		}
 		else {
 
-			while (temp->getnext != NULL)
+			while (temp->getnext() != NULL)
 			{
 				temp = temp->getnext();
 			}
@@ -265,104 +266,104 @@ void BankManSystem::addNewAccount()
 
 void BankManSystem::search1()
 {
-    int choice;
-//asking Choice
-    cout << "BY WHICH METHOD YOU WANT TO SEARCH" << endl;
-    cout << "PRESS 1 IF YOU WANT TO SEACRH BY NAME" << endl;
-    cout << "PRESS 2 IF YOU WANT TO SEACRH BY ACCOUNT NUMBER" << endl;
-    cout << "PRESS 3 IF YOU WANT TO SEACRH BY MOBILE NUMBER" << endl;
-    cout << "PRESS 4 IF YOU WANT TO SEACRH BY CNIC NUMBER" << endl ;
-    cin >> choice ;
+	int choice;
+	//asking Choice
+	cout << "BY WHICH METHOD YOU WANT TO SEARCH" << endl;
+	cout << "PRESS 1 IF YOU WANT TO SEACRH BY NAME" << endl;
+	cout << "PRESS 2 IF YOU WANT TO SEACRH BY ACCOUNT NUMBER" << endl;
+	cout << "PRESS 3 IF YOU WANT TO SEACRH BY MOBILE NUMBER" << endl;
+	cout << "PRESS 4 IF YOU WANT TO SEACRH BY CNIC NUMBER" << endl;
+	cin >> choice;
 
-// firstAccount of switch statement
-    switch (choice)
-    {
-    case 1:
-        {
-        string NAME;
-        cout << "ENTER THE NAME OF THE ACCOUNT HOLDER" << endl;
-        cin >> NAME;
-        Node*temp=firstAccount;                    // temp is the pointer which we use to find the required node
-        while(temp->objectOfAccountClass.NameOfAccountHolder != NAME && temp != NULL)
-        {
-            temp=temp->getnext();
-        }
-        display1(temp);
-        break;
-        }
-    case 2:
-        {
-        int number;
-        cout << "ENTER THE ACCOUNT NUMBER OF THE ACCOUNT HOLDER" << endl;
-        cin >> number;
-        Node*temp1=firstAccount;
-          while(temp1->objectOfAccountClass.AccountNumber != number && temp1 != NULL)
-        {
-            temp1=temp1->getnext();
-        }
-        display1(temp1);
-        break;
-        }
-    case 3:
-        {
-         long long mobilenumber;
-        cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
-        cin >> mobilenumber;
-        Node*temp2=firstAccount;
-          while(temp2->objectOfAccountClass.MobileNumber != mobilenumber && temp2 != NULL)
-        {
-            temp2=temp2->getnext();
-        }
-        display1(temp2);
-        break;
-        }
-    case 4:
-        {
-        string cnic;
-        cout << "ENTER THE CNIC NUMBER OF THE ACCOUNT HOLDER" << endl;
-        cin >> cnic;
-        Node*temp3=firstAccount;
-          while(temp3->objectOfAccountClass.CnicNumber != cnic && temp3 != NULL)
-        {
-            temp3=temp3->getnext();
-        }
-        display1(temp3);
-        break;
-        }
-    default:
-        cout << "INVALID CHOICE" << endl;
+	// firstAccount of switch statement
+	switch (choice)
+	{
+	case 1:
+	{
+		string NAME;
+		cout << "ENTER THE NAME OF THE ACCOUNT HOLDER" << endl;
+		cin >> NAME;
+		Node*temp = firstAccount;                    // temp is the pointer which we use to find the required node
+		while (temp->objectOfAccountClass.NameOfAccountHolder != NAME && temp != NULL)
+		{
+			temp = temp->getnext();
+		}
+		display1(temp);
+		break;
+	}
+	case 2:
+	{
+		int number;
+		cout << "ENTER THE ACCOUNT NUMBER OF THE ACCOUNT HOLDER" << endl;
+		cin >> number;
+		Node*temp1 = firstAccount;
+		while (temp1->objectOfAccountClass.AccountNumber != number && temp1 != NULL)
+		{
+			temp1 = temp1->getnext();
+		}
+		display1(temp1);
+		break;
+	}
+	case 3:
+	{
+		long long mobilenumber;
+		cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
+		cin >> mobilenumber;
+		Node*temp2 = firstAccount;
+		while (temp2->objectOfAccountClass.MobileNumber != mobilenumber && temp2 != NULL)
+		{
+			temp2 = temp2->getnext();
+		}
+		display1(temp2);
+		break;
+	}
+	case 4:
+	{
+		string cnic;
+		cout << "ENTER THE CNIC NUMBER OF THE ACCOUNT HOLDER" << endl;
+		cin >> cnic;
+		Node*temp3 = firstAccount;
+		while (temp3->objectOfAccountClass.CnicNumber != cnic && temp3 != NULL)
+		{
+			temp3 = temp3->getnext();
+		}
+		display1(temp3);
+		break;
+	}
+	default:
+		cout << "INVALID CHOICE" << endl;
 
-    }
-// end of switch statement
+	}
+	// end of switch statement
 
 
 } // END OF SEARCH FUNCTION ------------------ implementation
 
 // INNER display function to which we will pass node
 void BankManSystem::display1(Node*node)
-    {
-        cout << "-------------------------------------" << endl;
-        cout << "FOLLOWING ARE THe DETAILS OF THE ACCOUNTS " << endl;
-        cout << node->objectOfAccountClass.NameOfAccountHolder << endl;
-        cout << node->objectOfAccountClass.AccountNumber << endl;
-        cout << node->objectOfAccountClass.CashInAccount << endl;
-        cout << node->objectOfAccountClass.MobileNumber << endl;
-        cout << node->objectOfAccountClass.CnicNumber << endl;
-        cout << node->objectOfAccountClass.CityOfAccountHolder << endl;
-        cout << node->objectOfAccountClass.EmailOfAccoutHolder << endl;
-        cout << "--------------------------------------" << endl;
-    } // END OF INNER DISPLAY FUNCTION-------------------------- implementation
+{
+	cout << "-------------------------------------" << endl;
+	cout << "FOLLOWING ARE THe DETAILS OF THE ACCOUNTS " << endl;
+	cout << node->objectOfAccountClass.NameOfAccountHolder << endl;
+	cout << node->objectOfAccountClass.AccountNumber << endl;
+	cout << node->objectOfAccountClass.CashInAccount << endl;
+	cout << node->objectOfAccountClass.MobileNumber << endl;
+	cout << node->objectOfAccountClass.CnicNumber << endl;
+	cout << node->objectOfAccountClass.CityOfAccountHolder << endl;
+	cout << node->objectOfAccountClass.EmailOfAccoutHolder << endl;
+	cout << "--------------------------------------" << endl;
+} // END OF INNER DISPLAY FUNCTION-------------------------- implementation
 
 
 //firstAccount OF DISPLAY_ALL_ACCOUNTS FUNCTION ----------------- implementation
 void BankManSystem::displayAllAccounts()
 {
-    Node*temp=firstAccount;
-    while(temp!=NULL)
-    {
-        display1(temp);
-        temp=temp->getnext();
-    }
+	Node*temp = firstAccount;
+	while (temp != NULL)
+	{
+		display1(temp);
+		temp = temp->getnext();
+	}
 } // END OF DISPLAY_ALL_ACCOUNTS FUNCTION ------------------ implementation
 
 //account options function here
@@ -481,7 +482,7 @@ void BankManSystem::modifyCNIC(int id)
 		int pin;
 		cout << "Enter Your Pin ---> ";
 		cin >> pin;
-		if(isPinCorrect(id, pin))
+		if (isPinCorrect(id, pin))
 		{
 			int newCNIC;
 			cout << "Account ID is correct now to Preceed Enter New CNIC number--> ";
@@ -515,26 +516,26 @@ void BankManSystem::modifyAddress(int id)
 		cout << "Enter Your Pin ---> ";
 		cin >> pin;
 		if (isPinCorrect(pin, id))
-		if(isPinCorrect(id, pin))
-		{
-			int newCity;
-			cout << "Account ID is correct now to Preceed Enter New City Name--> ";
-			cin >> newCity;
-			Node* temp = firstAccount;
-			while (temp != NULL)
+			if (isPinCorrect(id, pin))
 			{
-				if (temp->objectOfAccountClass.AccountNumber == id)
+				int newCity;
+				cout << "Account ID is correct now to Preceed Enter New City Name--> ";
+				cin >> newCity;
+				Node* temp = firstAccount;
+				while (temp != NULL)
 				{
-					temp->objectOfAccountClass.CnicNumber = newCity;
-					return;
+					if (temp->objectOfAccountClass.AccountNumber == id)
+					{
+						temp->objectOfAccountClass.CnicNumber = newCity;
+						return;
+					}
 				}
 			}
-		}
-		else
-		{
-			cout << "Incorrect PIN--" << endl;
-			return;
-		}
+			else
+			{
+				cout << "Incorrect PIN--" << endl;
+				return;
+			}
 	}
 	else
 	{
@@ -544,29 +545,29 @@ void BankManSystem::modifyAddress(int id)
 void BankManSystem::DelAccount()
 {
 	int id, pin;
-    int choice;
-//asking Choice
-    cout << "BY WHICH METHOD YOU WANT TO DELETE" << endl;
-    cout << "PRESS 1 IF YOU WANT TO DELETE BY NAME" << endl;
-    cout << "PRESS 2 IF YOU WANT TO DELETE BY ACCOUNT NUMBER" << endl;
-    cout << "PRESS 3 IF YOU WANT TO DELETE BY MOBILE NUMBER" << endl;
-    cout << "PRESS 4 IF YOU WANT TO DELETE BY CNIC NUMBER" << endl ;
-    cin >> choice ;
+	int choice;
+	//asking Choice
+	cout << "BY WHICH METHOD YOU WANT TO DELETE" << endl;
+	cout << "PRESS 1 IF YOU WANT TO DELETE BY NAME" << endl;
+	cout << "PRESS 2 IF YOU WANT TO DELETE BY ACCOUNT NUMBER" << endl;
+	cout << "PRESS 3 IF YOU WANT TO DELETE BY MOBILE NUMBER" << endl;
+	cout << "PRESS 4 IF YOU WANT TO DELETE BY CNIC NUMBER" << endl;
+	cin >> choice;
 	// check pin will be added .........    //added today with some minor changes in uzair's code 12 dec
 // firstAccount of switch statement
-    switch (choice)
-    {
-    case 1:
-        {
+	switch (choice)
+	{
+	case 1:
+	{
 		// PIN VALIDATION ADDED "QAZI ARSALAN SHAH"
-        string NAME;
-        cout << "ENTER THE NAME OF THE ACCOUNT HOLDER" << endl;
-        cin >> NAME;
-        Node*temp=firstAccount;                    // temp is the pointer which we use to find the required node
-        while(temp->getnext()->objectOfAccountClass.NameOfAccountHolder != NAME && temp->getnext() != NULL)
-        {
+		string NAME;
+		cout << "ENTER THE NAME OF THE ACCOUNT HOLDER" << endl;
+		cin >> NAME;
+		Node*temp = firstAccount;                    // temp is the pointer which we use to find the required node
+		while (temp->getnext()->objectOfAccountClass.NameOfAccountHolder != NAME && temp->getnext() != NULL)
+		{
 			temp = temp->getnext();           // searches
-        }
+		}
 		if (temp->getnext()->objectOfAccountClass.NameOfAccountHolder == NAME) //if found
 		{
 			id = temp->getnext()->objectOfAccountClass.AccountNumber; // pin check
@@ -585,287 +586,294 @@ void BankManSystem::DelAccount()
 				return;
 			}
 		}
-		else{
+		else {
 			cout << "Account Not found \n";  // not found returns
 			return;
 		}
-        }
-    case 2:
-        {
-            int number;
-            cout<<"ENTER THE NUMBER OF ACCOUNT HOLDER:"<<endl;
-            cin>>number;
-            Node*temp1=firstAccount;
-            while(temp1->getnext()->objectOfAccountClass.AccountNumber != number && temp1->getnext()!=NULL)
-            {
-                temp1=temp1->getnext();
-            }
-			if (temp1->getnext()->objectOfAccountClass.AccountNumber == number)
+	}
+	case 2:
+	{
+		int number;
+		cout << "ENTER THE NUMBER OF ACCOUNT HOLDER:" << endl;
+		cin >> number;
+		Node*temp1 = firstAccount;
+		while (temp1->getnext()->objectOfAccountClass.AccountNumber != number && temp1->getnext() != NULL)
+		{
+			temp1 = temp1->getnext();
+		}
+		if (temp1->getnext()->objectOfAccountClass.AccountNumber == number)
+		{
+			id = temp1->getnext()->objectOfAccountClass.AccountNumber; // pin check
+			cout << "Enter Pin \n";
+			cin >> pin;
+			if (isPinCorrect(pin, id)) // if correct deletes account
 			{
-				id = temp1->getnext()->objectOfAccountClass.AccountNumber; // pin check
-				cout << "Enter Pin \n";
-				cin >> pin;
-				if (isPinCorrect(pin, id)) // if correct deletes account
-				{
-					temp1->setnext(temp1->getnext()->getnext());
-					cout << "Account Deleted \n";
-					return;
-					break;
-				}
-				else {
-					cout << "Invalid Pin \n";
-					return;
-				}
+				temp1->setnext(temp1->getnext()->getnext());
+				cout << "Account Deleted \n";
+				return;
+				break;
 			}
 			else {
-				cout << "Account Not Found\n";
+				cout << "Invalid Pin \n";
 				return;
 			}
+		}
+		else {
+			cout << "Account Not Found\n";
+			return;
+		}
 
-        }
-        case 3:
-        {
-         long long mobilenumber;
-        cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
-        cin >> mobilenumber;
-        Node*temp2=firstAccount;
-          while(temp2->getnext()->objectOfAccountClass.MobileNumber != mobilenumber && temp2->getnext() != NULL)
-        {
-            temp2=temp2->getnext();
-        }
-		  if (temp2->getnext()->objectOfAccountClass.MobileNumber == mobilenumber)
-		  {
-			 id = temp2->getnext()->objectOfAccountClass.AccountNumber; // pin check
-			  cout << "Enter Pin \n";
+	}
+	case 3:
+	{
+		long long mobilenumber;
+		cout << "ENTER THE MOBILE NUMBER OF THE ACCOUNT HOLDER" << endl;
+		cin >> mobilenumber;
+		Node*temp2 = firstAccount;
+		while (temp2->getnext()->objectOfAccountClass.MobileNumber != mobilenumber && temp2->getnext() != NULL)
+		{
+			temp2 = temp2->getnext();
+		}
+		if (temp2->getnext()->objectOfAccountClass.MobileNumber == mobilenumber)
+		{
+			id = temp2->getnext()->objectOfAccountClass.AccountNumber; // pin check
+			cout << "Enter Pin \n";
 
-			  cin >> pin;
-			  if (isPinCorrect(pin, id)) // if correct deletes account
-			  {
-				  temp2->setnext(temp2->getnext()->getnext());
-				  cout << "Account Deleted \n";
-				  return;
-				  break;
-			  }
-			  else {
-				  cout << "Invalid Pin \n";
-				  return;
-			  }
-		  }
-		  else {
-			  cout << "Account Not Found\n";
-			  return;
-		  }
+			cin >> pin;
+			if (isPinCorrect(pin, id)) // if correct deletes account
+			{
+				temp2->setnext(temp2->getnext()->getnext());
+				cout << "Account Deleted \n";
+				return;
+				break;
+			}
+			else {
+				cout << "Invalid Pin \n";
+				return;
+			}
+		}
+		else {
+			cout << "Account Not Found\n";
+			return;
+		}
 
-        }
-         case 4:
-        {
-        string cnic;
-        cout << "ENTER THE CNIC OF THE ACCOUNT HOLDER" << endl;
-        cin >> cnic;
-        Node*temp3=firstAccount;
-          while(temp3->objectOfAccountClass.CnicNumber != cnic && temp3->getnext() != NULL)
-        {
-            temp3=temp3->getnext();
-        }
-		  if (temp3->getnext()->objectOfAccountClass.CnicNumber== cnic)
-		  {
-			  id = temp3->getnext()->objectOfAccountClass.AccountNumber; // pin check
-			  cout << "Enter Pin \n";
+	}
+	case 4:
+	{
+		string cnic;
+		cout << "ENTER THE CNIC OF THE ACCOUNT HOLDER" << endl;
+		cin >> cnic;
+		Node*temp3 = firstAccount;
+		while (temp3->objectOfAccountClass.CnicNumber != cnic && temp3->getnext() != NULL)
+		{
+			temp3 = temp3->getnext();
+		}
+		if (temp3->getnext()->objectOfAccountClass.CnicNumber == cnic)
+		{
+			id = temp3->getnext()->objectOfAccountClass.AccountNumber; // pin check
+			cout << "Enter Pin \n";
 
-			  cin >> pin;
-			  if (isPinCorrect(pin, id)) // if correct deletes account
-			  {
-				  temp3->setnext(temp3->getnext()->getnext());
-				  cout << "Account Deleted \n";
-				  return;
-				  break;
-			  }
-			  else {
-				  cout << "Invalid Pin \n";
-				  return;
-			  }
-		  }
-		  else {
-			  cout << "Account Not Found\n";
-			  return;
-		  }
+			cin >> pin;
+			if (isPinCorrect(pin, id)) // if correct deletes account
+			{
+				temp3->setnext(temp3->getnext()->getnext());
+				cout << "Account Deleted \n";
+				return;
+				break;
+			}
+			else {
+				cout << "Invalid Pin \n";
+				return;
+			}
+		}
+		else {
+			cout << "Account Not Found\n";
+			return;
+		}
 
-        }
-    default:
-        cout << "INVALID CHOICE" << endl;
+	}
+	default:
+		cout << "INVALID CHOICE" << endl;
 
-    }
-    }
-    //END OF DELETE FUNCTION.
+	}
+}
+//END OF DELETE FUNCTION.
 
-    // START OF WITHDRAW CASH FUNCTION
-    void BankManSystem::WithDraw(int number,int pin)
-    {
-        int WithDrawAmount;
-        Node*temp = firstAccount;
-        if(temp == NULL )
-        {
-            cout << "There is no account" << endl;
-            return;
-        }
-        else
-        {
-            while(temp->objectOfAccountClass.AccountNumber != number && temp != NULL)
-            {
-                temp = temp->getnext();
-            }
-            if(temp == NULL )
-            {
-            cout << "There is no such account" << endl;
-            return;
-            }
-            if(pin == temp->objectOfAccountClass.PINofAccount)
-            {
-                cout << "The available amount in the account is " << temp->objectOfAccountClass.CashInAccount << endl;
-                cout << "Enter The amount you want to withdraw" << endl;
-                cin >> WithDrawAmount ;
-                if(WithDrawAmount > temp->objectOfAccountClass.CashInAccount)
-                {
-                    cout << "Invalid Amount" << endl;
-                    cout << "Enter The amount you want to withdraw" << endl;
-                    cin >> WithDrawAmount ;
-                }
-                else
-                {
-                    temp->objectOfAccountClass.CashInAccount = temp->objectOfAccountClass.CashInAccount - WithDrawAmount;
-                    cout << "Your remaining amount of cash in the account is " << temp->objectOfAccountClass.CashInAccount << endl;
-                }
-            }
-        }
-    }
-    // END OF WITHDRAW FUNCTION
-     void BankManSystem::DepositAmount(int number,int pin,int ammount)
-     {
-        int NewAmountInAccount;
-        Node*temp = firstAccount;
-        if(temp == NULL )
-        {
-            cout << "There is no account" << endl;
-            return;
-        }
-        else
-        {
-            while(temp->objectOfAccountClass.AccountNumber != number && temp != NULL)
-            {
-                temp = temp->getnext();
-            }
-            if(temp == NULL )
-            {
-            cout << "There is no such account" << endl;
-            return;
-            }
-            if(pin == temp->objectOfAccountClass.PINofAccount)
-            {
-                cout << "The previous available amount in the account is " << temp->objectOfAccountClass.CashInAccount << endl;
-                temp->objectOfAccountClass.CashInAccount = temp->objectOfAccountClass.CashInAccount + ammount;
-                cout << "The current available amount in the account is " << temp->objectOfAccountClass.CashInAccount << endl;
-            }
-        }        `
-     }
+// START OF WITHDRAW CASH FUNCTION
+void BankManSystem::WithDraw(int number, int pin)
+{
+	int WithDrawAmount;
+	Node*temp = firstAccount;
+	if (temp == NULL)
+	{
+		cout << "There is no account" << endl;
+		return;
+	}
+	else
+	{
+		while (temp->objectOfAccountClass.AccountNumber != number && temp != NULL)
+		{
+			temp = temp->getnext();
+		}
+		if (temp == NULL)
+		{
+			cout << "There is no such account" << endl;
+			return;
+		}
+		if (pin == temp->objectOfAccountClass.PINofAccount)
+		{
+			cout << "The available amount in the account is " << temp->objectOfAccountClass.CashInAccount << endl;
+			cout << "Enter The amount you want to withdraw" << endl;
+			cin >> WithDrawAmount;
+			if (WithDrawAmount > temp->objectOfAccountClass.CashInAccount)
+			{
+				cout << "Invalid Amount" << endl;
+				cout << "Enter The amount you want to withdraw" << endl;
+				cin >> WithDrawAmount;
+			}
+			else
+			{
+				temp->objectOfAccountClass.CashInAccount = temp->objectOfAccountClass.CashInAccount - WithDrawAmount;
+				cout << "Your remaining amount of cash in the account is " << temp->objectOfAccountClass.CashInAccount << endl;
+			}
+		}
+	}
+}
+// END OF WITHDRAW FUNCTION
+void BankManSystem::DepositAmount(int number, int pin, int ammount)
+{
+	int NewAmountInAccount;
+	Node*temp = firstAccount;
+	if (temp == NULL)
+	{
+		cout << "There is no account" << endl;
+		return;
+	}
+	else
+	{
+		while (temp->objectOfAccountClass.AccountNumber != number && temp != NULL)
+		{
+			temp = temp->getnext();
+		}
+		if (temp == NULL)
+		{
+			cout << "There is no such account" << endl;
+			return;
+		}
+		if (pin == temp->objectOfAccountClass.PINofAccount)
+		{
+			cout << "The previous available amount in the account is " << temp->objectOfAccountClass.CashInAccount << endl;
+			temp->objectOfAccountClass.CashInAccount = temp->objectOfAccountClass.CashInAccount + ammount;
+			cout << "The current available amount in the account is " << temp->objectOfAccountClass.CashInAccount << endl;
+		}
+	}
+}
 // END OF DEPOSIT AccouNT FUNCTION
 // main function
 int main()
 {
 	BankManSystem bankOBJ;
-    //firstAccount of variables section--mian()
-    char  choiceToExitLoop;
-    int choiceOfMenu, choiceForInternalSwitch;
-    //menu to display
+	//firstAccount of variables section--mian()
+	char  choiceToExitLoop;
+	int choiceOfMenu, choiceForInternalSwitch;
+	//menu to display
 
 
 
-    cout << "=======================" << endl;
-    cout << "Bank Management System" <<endl ;
-    cout << "=======================" << endl;
+	cout << "=======================" << endl;
+	cout << "Bank Management System" << endl;
+	cout << "=======================" << endl;
 
-    do
-    {
-//showing menu
-        printf("\n   ::Main Menu::\n");
-        printf("\n1. Make New Account-- ");
-        printf("\n2. Transfer Amount-- ");
-        printf("\n3. Deposit Amount--");
-        printf("\n4. Withdraw Amount from Account--");
+	do
+	{
+		//showing menu
+		printf("\n   ::Main Menu::\n");
+		printf("\n1. Make New Account-- ");
+		printf("\n2. Transfer Amount-- ");
+		printf("\n3. Deposit Amount--");
+		printf("\n4. Withdraw Amount from Account--");
 		printf("\n5. Search an Account--");
-        printf("\n6. Close Account--");
-        printf("\n7. Display Account Holders List--");
+		printf("\n6. Close Account--");
+		printf("\n7. Display Account Holders List--");
 		printf("\n8. Account Options--");
 		printf("\n9. Delete Account--");
-		 printf("\n10. Deposit Amount in Account--");
-        printf("\n \n Select one Option of Your Choice");
-        cin >> choiceOfMenu;
-//switch statement to choose menu
-        switch (choiceOfMenu)
-        {
-        case 1:
-            cout << "Making New Account" << endl;
+		printf("\n10. Deposit Amount in Account--");
+		printf("\n \n Select one Option of Your Choice");
+		cin >> choiceOfMenu;
+		//switch statement to choose menu
+		switch (choiceOfMenu)
+		{
+		case 1:
+			cout << "Making New Account" << endl;
+			bankOBJ.addNewAccount();
+			break;
+		case 2:
+			cout << "Amount Transfer Section" << endl;
+			break;
+		case 3:
+			cout << "Amount Deposit Section" << endl;
+			break;
+		case 4:
+		{
+			int accountnumber, pincode1;
+			cout << "Enter the Account Number " << endl;
+			cin >> accountnumber;
+			cout << "Enter the pin " << endl;
+			cin >> pincode1;
+			bankOBJ.WithDraw(accountnumber, pincode1);
+			break;
+		}
+		case 5:
+		{
+			cout << "Search an Account" << endl;
+			bankOBJ.search1();
+			break;
+		}
 
-            break;
-        case 2:
-            cout << "Amount Transfer Section" << endl;
-            break;
-        case 3:
-            cout << "Amount Deposit Section" << endl;
-            break;
-        case 4:
-            {
-                int accountnumber,pincode1;
-                cout << "Enter the Account Number " << endl;
-                cin >> accountnumber;
-                cout << "Enter the pin " << endl;
-                cin >> pincode1;
-                bankOBJ.WithDraw(accountnumber,pincode1);
-            break;
-            }
-        case 5:
-            cout << "Search an Account" << endl;
-            break;
-        case 6:
-            cout << "Close Account Section" << endl;
-            break;
-        case 7:
-            cout << "Display Account Holders List Section" << endl;
-            break;
+		case 6:
+			cout << "Close Account Section" << endl;
+			break;
+		case 7:
+		{
+			cout << "Display Account Holders List Section" << endl;
+			bankOBJ.displayAllAccounts();
+			break;
+		}
+
 		case 8:
 			cout << "Account options" << endl;
 			bankOBJ.accOptions();
 			break;
-        case 9:
-            {
-            cout<<"DELETE ACCOUNT"<<endl;
-            bankOBJ.DelAccount();
-            break;
-            }
-        case 10:
-            {
-                int accountnumber1,pincode2,NewAmmount;
-                cout << "Enter the Account Number " << endl;
-                cin >> accountnumber1;
-                cout << "Enter the pin " << endl;
-                cin >> pincode2;
-                cout << "Enter the amount you want to add" << endl;
-                cin >> NewAmmount;
-                bankOBJ.DepositAmount(accountnumber1,pincode2,NewAmmount);
-            break;
-            }
-        default:
-            break;
-        }
-        printf("Do You Want to Continue--- (y/n)--  ");
-        cin >> choiceToExitLoop;
-        printf("\n____________________________________\n");
+		case 9:
+		{
+			cout << "DELETE ACCOUNT" << endl;
+			bankOBJ.DelAccount();
+			break;
+		}
+		case 10:
+		{
+			int accountnumber1, pincode2, NewAmmount;
+			cout << "Enter the Account Number " << endl;
+			cin >> accountnumber1;
+			cout << "Enter the pin " << endl;
+			cin >> pincode2;
+			cout << "Enter the amount you want to add" << endl;
+			cin >> NewAmmount;
+			bankOBJ.DepositAmount(accountnumber1, pincode2, NewAmmount);
+			break;
+		}
+		default:
+			break;
+		}
+		printf("Do You Want to Continue--- (y/n)--  ");
+		cin >> choiceToExitLoop;
+		printf("\n____________________________________\n");
 
-    }
-    while (choiceToExitLoop == 'y' );
-
+	} while (choiceToExitLoop == 'y');
 
 
-    return 0;
+
+	return 0;
 }
 
 //checked all the recent modifications by zeemal urroj
