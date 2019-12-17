@@ -151,9 +151,10 @@ public:
     // constructors/destructors section of BankManSystem class
     BankManSystem();
     ~BankManSystem();
-    void addNewAccount(); // added by @qaziArsalan Dated: 11 dec 2019
+  int accountNumberReciver = 1;
+     //function section of BankManSystem class
+    void addNewAccount(string name,string cnic,string city,string email,long long mob,int pin,int amount); // added by @qaziArsalan Dated: 11 dec 2019
     bool searchByAccNo(int);
-    //function section of BankManSystem class
     void search1();
     bool searchByAccNo();
     void displayAllAccounts();
@@ -167,6 +168,8 @@ public:
     void DelAccount();
     void WithDraw(int a, int b);
     void DepositAmount(int a, int b, int c);
+    void savefile();
+    void loadfile();
 };
 
 
@@ -176,9 +179,13 @@ public:
 BankManSystem::BankManSystem()
 {
     firstAccount = NULL;
+    loadfile();
 }
 
-BankManSystem::~BankManSystem() {}
+BankManSystem::~BankManSystem()
+{
+ savefile();
+}
 
 
 //functions section of BankManSystem class -------------------implementation
@@ -213,33 +220,12 @@ bool BankManSystem::isPinCorrect(int id, int pin)
     return false;
 }
 // Add New Account "Qazi Arsalan"
-void BankManSystem::addNewAccount()
+// edited by Syed Uzair TO load data on run time
+void BankManSystem::addNewAccount(string name,string cnic,string city,string email,long long mob,int pin,int amount)
 {
     if (acountNumber <= NumberOfTotalAccounts)
     {
-        string name, cnic, email, city;
-        long long mob;
-        int pin, amount;
-        cout << "Enter Your Name \n";
-        cin >> name;
-        cout << "Enter Your CNIC \n";
-        cin >> cnic;
-        cout << "Enter Your City \n";
-        cin >> city;
-        cout << "Enter your Email \n";
-        cin >> email;
-        cout << "Enter Your Mobile Number\n";
-        cin >> mob;
-        cout << "Enter Five Digit Pin \n";
-        cin >> pin;
-        cout << "Deposit Atleast Rs 500 to Your Account\n";
-        cin >> amount;
-        while (amount < 500)
-        {
-            cout << "Please Deposit atleast Rs 500\n";
-            cout << "Enter Ammount\n";
-            cin >> amount;
-        }
+
         Node *newNode = new Node(pin, amount, acountNumber, mob, name, cnic, email, city);
         Node *temp = firstAccount;
         if (temp == NULL)
@@ -256,7 +242,8 @@ void BankManSystem::addNewAccount()
             }
             temp->setnext(newNode);
             cout << "Congratulations....!! \n Your Account has been created \n";
-            acountNumber++;
+            newNode->objectOfAccountClass.AccountNumber = accountNumberReciver;
+            accountNumberReciver++;
             return;
         }
 
@@ -797,6 +784,73 @@ void BankManSystem::DepositAmount(int number, int pin, int ammount)
     }
 }
 // END OF DEPOSIT AccouNT FUNCTION
+
+// Function to save data in file
+void BankManSystem:: savefile()
+{
+    int i;
+    int AccountNumber1;
+    int CashInAccount1;
+    int PINofAccount1;
+    long long MobileNumber1;
+    string CnicNumber1;
+    string NameOfAccountHolder1;
+    string CityOfAccountHolder1;
+    string EmailOfAccoutHolder1;
+    ofstream file;
+    Node*temp = firstAccount;
+    file.open("list.txt");
+    while(temp != NULL)
+    {
+        AccountNumber1 = temp->objectOfAccountClass.AccountNumber;
+        CashInAccount1 = temp->objectOfAccountClass.CashInAccount;
+        PINofAccount1 = temp->objectOfAccountClass.PINofAccount;
+        MobileNumber1 = temp->objectOfAccountClass.MobileNumber;
+        CnicNumber1 = temp->objectOfAccountClass.CnicNumber;
+        NameOfAccountHolder1 = temp->objectOfAccountClass.NameOfAccountHolder;
+        CityOfAccountHolder1 = temp->objectOfAccountClass.CityOfAccountHolder;
+        EmailOfAccoutHolder1 = temp->objectOfAccountClass.EmailOfAccoutHolder;
+        file << AccountNumber1 << endl;
+         file << CashInAccount1 << endl;
+         file  << PINofAccount1 << endl;
+          file  << MobileNumber1 << endl;
+          file   << CnicNumber1 << endl;
+           file   << NameOfAccountHolder1 <<endl;
+            file   << CityOfAccountHolder1 << endl;
+             file  << EmailOfAccoutHolder1 << endl;
+
+        temp = temp->getnext();
+    }
+} // end of save file function
+
+// Function to load all data from file
+void BankManSystem:: loadfile()
+{
+    ifstream file2;
+   Node*temp = firstAccount;
+   int AccountNumber2;
+    int CashInAccount2;
+    int PINofAccount2;
+    long long MobileNumber2;
+    string CnicNumber2;
+    string NameOfAccountHolder2;
+    string CityOfAccountHolder2;
+    string EmailOfAccoutHolder2;
+      while(file2.eof()==0)
+   {
+       file2 >> AccountNumber2;
+       file2 >> CashInAccount2;
+       file2 >> PINofAccount2;
+       file2 >> MobileNumber2;
+       file2 >> CnicNumber2;
+       file2 >> NameOfAccountHolder2;
+       file2 >> CityOfAccountHolder2;
+       file2 >> EmailOfAccoutHolder2;
+       addNewAccount(NameOfAccountHolder2,CnicNumber2,CityOfAccountHolder2,EmailOfAccoutHolder2,MobileNumber2,PINofAccount2,CashInAccount2);
+   }
+}
+// End OF load function
+
 // main function
 int main()
 {
@@ -830,9 +884,33 @@ int main()
         switch (choiceOfMenu)
         {
         case 1:
-            cout << "Making New Account" << endl;
-            bankOBJ.addNewAccount();
+            {
+                string name, cnic, email, city;
+            long long mob;
+        int pin, amount;
+        cout << "Enter Your Name \n";
+        cin >> name;
+        cout << "Enter Your CNIC \n";
+        cin >> cnic;
+        cout << "Enter Your City \n";
+        cin >> city;
+        cout << "Enter your Email \n";
+        cin >> email;
+        cout << "Enter Your Mobile Number\n";
+        cin >> mob;
+        cout << "Enter Five Digit Pin \n";
+        cin >> pin;
+        cout << "Deposit Atleast Rs 500 to Your Account\n";
+        cin >> amount;
+        while (amount < 500)
+        {
+            cout << "Please Deposit atleast Rs 500\n";
+            cout << "Enter Ammount\n";
+            cin >> amount;
+        }
+            bankOBJ.addNewAccount(name,cnic,city,email,mob,pin,amount);
             break;
+            }
         case 2:
             cout << "Amount Transfer Section" << endl;
             break;
@@ -894,7 +972,7 @@ int main()
     }
     while (choiceToExitLoop == 'y');
 
-
+   // bankOBJ.savefile();
 
     return 0;
 }
