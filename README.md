@@ -37,3 +37,6 @@ Three Different classes were created,
 2. Delete Account Function will Ask user to enter his/her account id , if id matches then it will ask for pin , if pin matches then will delete his/her account.
 3. WithDraw cash Function will ask for User Id , if id macthes then will ask for pin , if pin matches then will ask how much amount you want to withdraw if there is enough amount in your account it will be withdrawn else will reject the request.
 etc
+4. Deposite Amount Function will Ask user to enter his/her account id , if id matches then it will ask for pin , if pin matches then will ask enter amount and amount will be added and account is updated.
+5. Account options Function provides extra functionalities that are properly documented in the code. just easypaisa application.
+it includes modify name etc.
